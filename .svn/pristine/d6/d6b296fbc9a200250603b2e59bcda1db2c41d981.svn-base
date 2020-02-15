@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/WCFeRosja" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFeRosja" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.1.15/WCFeRosja/WyjazdService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Wyjazd">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alkohol" nillable="true" type="tns:Alkohol" />
+      <xs:element minOccurs="0" name="Data" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Godzina" type="ser:duration" />
+      <xs:element minOccurs="0" name="Kanal" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LoginUzytkownika" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mandat" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Paliwo" nillable="true" type="tns:Paliwo" />
+      <xs:element minOccurs="0" name="Papierosy" nillable="true" type="tns:Papierosy" />
+      <xs:element minOccurs="0" name="Przejscie" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Wyjazd" nillable="true" type="tns:Wyjazd" />
+  <xs:complexType name="Alkohol">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cena" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Ilosc" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Nazwa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Przejscie" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sklep" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Alkohol" nillable="true" type="tns:Alkohol" />
+  <xs:complexType name="Paliwo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IloscPaliwa" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RodzajPaliwa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Stacja" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Paliwo" nillable="true" type="tns:Paliwo" />
+  <xs:complexType name="Papierosy">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cena" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Ilosc" type="xs:int" />
+      <xs:element minOccurs="0" name="Nazwa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Przejscie" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sklep" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Papierosy" nillable="true" type="tns:Papierosy" />
+  <xs:complexType name="ArrayOfWyjazd">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Wyjazd" nillable="true" type="tns:Wyjazd" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWyjazd" nillable="true" type="tns:ArrayOfWyjazd" />
+</xs:schema>

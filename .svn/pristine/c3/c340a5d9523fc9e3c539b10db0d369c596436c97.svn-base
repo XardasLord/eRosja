@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<repositories>
+  <repository path="..\eRosja\packages.config" />
+  <repository path="..\SQLite-eRosja\packages.config" />
+  <repository path="..\WCFeRosja\packages.config" />
+</repositories>

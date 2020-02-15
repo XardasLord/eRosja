@@ -1,0 +1,110 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using eRosja.UzytkownikService;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace eRosja
+{
+    public partial class Rejestracja : PhoneApplicationPage
+    {
+        UzytkownikServiceClient uzytkownikUsluga;
+
+        public Rejestracja()
+        {
+            InitializeComponent();
+            uzytkownikUsluga = new UzytkownikServiceClient();
+            uzytkownikUsluga.ZarejestrujUzytkownikaCompleted += uzytkownikUsluga_ZarejestrujUzytkownikaCompleted;
+        }
+
+        
+
+        private void btnZarejestruj_Click(object sender, RoutedEventArgs e)
+        {
+            bool poprawne = SprawdzDane();
+
+            if (poprawne)
+            {
+                string login = tbLogin.Text;
+                string haslo = Hash.ZakodujSHA1(tbHaslo.Text);
+                string email = tbEmail.Text;
+
+                //Wywołanie metody w usłudze WCF - dodanie rekordu do bazy
+                uzytkownikUsluga.ZarejestrujUzytkownikaAsync(login, haslo, email);
+            }
+        }
+
+
+        // Walidacja danych wpisanych przy rejestracji
+        private bool SprawdzDane()
+        {
+            if (tbLogin.Text == "")
+            {
+                lblInformacja.Text = "Login nie może być pusty!";
+                tbLogin.Focus();
+                return false;
+            }
+
+            if (tbLogin.Text.Count() < 5)
+            {
+                lblInformacja.Text = "Login musi zawierać przynajmniej 5 znaków!";
+                tbLogin.Focus();
+                return false;
+            }
+
+            if (tbHaslo.Text == "")
+            {
+                lblInformacja.Text = "Hasło nie może być puste!";
+                tbHaslo.Focus();
+                return false;
+            }
+
+            if (tbHaslo.Text.Count() < 5)
+            {
+                lblInformacja.Text = "Hasło musi zawierać przynajmniej 5 znaków!";
+                tbLogin.Focus();
+                return false;
+            }
+
+            if (tbHaslo.Text != tbHaslo2.Text)
+            {
+                lblInformacja.Text = "Wpisane hasła nie są identyczne!";
+                return false;
+            }
+
+            if (tbEmail.Text == "")
+            {
+                lblInformacja.Text = "E-mail nie może być pusty!";
+                tbEmail.Focus();
+                return false;
+            }
+
+            // Jeśli wszystkie pola są poprawnie wypełnione
+            lblInformacja.Text = "";
+            return true;
+        }
+
+
+
+
+        void uzytkownikUsluga_ZarejestrujUzytkownikaCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                NavigationService.Navigate(new Uri("/MainPage.xaml?param=Zarejestrowano", UriKind.Relative));
+            }
+            else
+            {
+                lblInformacja.Text = e.Error.Message;
+            }
+        }
+
+    }
+}

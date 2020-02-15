@@ -1,0 +1,90 @@
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\Assets\ApplicationIcon.png
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\Assets\Tiles\FlipCycleTileLarge.png
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\Assets\Tiles\FlipCycleTileSmall.png
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\Assets\Tiles\IconicTileMediumLarge.png
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\Assets\Tiles\IconicTileSmall.png
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\eRosja.dll
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\eRosja.pdb
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\resources.pri
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\AppxManifest.xml
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\eRosja.build.appxrecipe
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\Properties\WMAppManifest.xml
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\AppManifest.xaml
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\eRosja_Debug_AnyCPU.xap
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\Microsoft.Phone.Controls.dll
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\App.g.cs
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\eRosja.g.resources
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\eRosja.Resources.AppResources.resources
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\eRosja.csproj.GenerateResource.Cache
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\eRosja.dll
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\eRosja.pdb
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\priconfig.xml
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\priconfig.xml.intermediate
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\layout.resfiles
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\layout.resfiles.intermediate
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\resources.resfiles
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\resources.resfiles.intermediate
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\pri.resfiles
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\pri.resfiles.intermediate
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\qualifiers.txt
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\qualifiers.txt.intermediate
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\ProjectArchitectures.txt
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\MDILProjectFiles.xml
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\XapCacheFile.xml
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\eRosja.csprojResolveAssemblyReference.cache
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\Ceny.g.cs
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\Kurs.g.cs
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\Rejestracja.g.cs
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\MainPage.g.cs
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\StronaGlowna.g.cs
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\WyjazdDodaj.g.cs
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\Assets\ApplicationIcon.png
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\Assets\Tiles\FlipCycleTileLarge.png
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\Assets\Tiles\FlipCycleTileSmall.png
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\Assets\Tiles\IconicTileMediumLarge.png
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\Assets\Tiles\IconicTileSmall.png
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\eRosja.dll
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\eRosja.pdb
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\resources.pri
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\AppxManifest.xml
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\eRosja.build.appxrecipe
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\Properties\WMAppManifest.xml
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\AppManifest.xaml
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\eRosja_Debug_AnyCPU.xap
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\Microsoft.Phone.Controls.dll
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\App.g.cs
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\Ceny.g.cs
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\Kurs.g.cs
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\Rejestracja.g.cs
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\MainPage.g.cs
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\StronaGlowna.g.cs
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\WyjazdDodaj.g.cs
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\eRosja.g.resources
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\eRosja.Resources.AppResources.resources
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\eRosja.csproj.GenerateResource.Cache
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\eRosja.dll
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\eRosja.pdb
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\priconfig.xml
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\priconfig.xml.intermediate
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\layout.resfiles
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\layout.resfiles.intermediate
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\resources.resfiles
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\resources.resfiles.intermediate
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\pri.resfiles
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\pri.resfiles.intermediate
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\qualifiers.txt
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\qualifiers.txt.intermediate
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\ProjectArchitectures.txt
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\MDILProjectFiles.xml
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\XapCacheFile.xml
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\WyjazdSprawdz.g.cs
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\Koszty.g.cs
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\Zmiany.g.cs
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\Debug\WPControls.dll
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\Debug\eRosja.csprojResolveAssemblyReference.cache

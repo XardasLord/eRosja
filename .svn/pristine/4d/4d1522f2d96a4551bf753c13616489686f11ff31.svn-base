@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Text;
+
+namespace WCFeRosja
+{
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "WyjazdyService" in code, svc and config file together.
+    // NOTE: In order to launch WCF Test Client for testing this service, please select WyjazdyService.svc or WyjazdyService.svc.cs at the Solution Explorer and start debugging.
+    public class WyjazdService : IWyjazdService
+    {
+        public void DodajWyjazd(Wyjazd daneWyjazdu)
+        {
+            int kanal = 0;
+            int mandat = 0;
+
+            if (daneWyjazdu.Kanal == true)
+                kanal = 1;
+            if (daneWyjazdu.Mandat == true)
+                mandat = 1;
+
+
+            WyjazdyEntity wyjazd = new WyjazdyEntity();
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                long IdPrzejscia = eRosja.przejscia.Where(p => p.nazwa.Equals(daneWyjazdu.Przejscie)).Select(p => p.id_przejscia).First();
+                long IdStacji = eRosja.stacje_benzynowe.Where(s => s.nazwa.Equals(daneWyjazdu.Paliwo.Stacja) && 
+                                                              s.id_przejscia == IdPrzejscia)
+                                                              .Select(s => s.id_stacje_benzynowe).First();
+
+                wyjazd.id_uzytkownicy = eRosja.uzytkownicy.Where(u => u.login.Equals(daneWyjazdu.LoginUzytkownika))
+                                                           .Select(u => u.id_uzytkownicy).First();
+                wyjazd.id_przejscia = IdPrzejscia;
+                wyjazd.id_stacje_benzynowe = IdStacji;
+                wyjazd.id_paliwa = eRosja.paliwo_ceny.Where(p => p.paliwa.nazwa.Equals(daneWyjazdu.Paliwo.RodzajPaliwa) && 
+                                                            p.id_stacje_benzynowe == IdStacji)
+                                                            .Select(p => p.id_paliwa).First();
+
+                wyjazd.ilosc_paliwa = daneWyjazdu.Paliwo.IloscPaliwa;
+                wyjazd.id_sklepy_papierosy = eRosja.sklepy.Where(s => s.nazwa.Equals(daneWyjazdu.Papierosy.SklepPapierosy) 
+                                                                 && s.id_przejscia == IdPrzejscia)
+                                                                 .Select(s => s.id_sklepy).First();
+
+                wyjazd.id_papierosy = eRosja.papierosy_ceny.Where(p => p.papierosy.nazwa.Equals(daneWyjazdu.Papierosy.NazwaPapierosow) && 
+                                                                  p.id_przejscia == IdPrzejscia && 
+                                                                  p.id_sklepy == wyjazd.id_sklepy_papierosy)
+                                                                  .Select(p => p.id_papierosy).First();
+
+                wyjazd.ilosc_papierosow = daneWyjazdu.Papierosy.IloscPapierosow;
+                wyjazd.id_sklepy_alkohole = eRosja.sklepy.Where(s => s.nazwa.Equals(daneWyjazdu.Alkohol.SklepAlkohol)
+                                                                 && s.id_przejscia == IdPrzejscia)
+                                                                 .Select(s => s.id_sklepy).First();
+
+                wyjazd.id_alkohole = eRosja.alkohol_ceny.Where(p => p.alkohole.nazwa.Equals(daneWyjazdu.Alkohol.NazwaAlkoholu) && 
+                                                                  p.id_przejscia == IdPrzejscia && 
+                                                                  p.id_sklepy == wyjazd.id_sklepy_alkohole)
+                                                                  .Select(p => p.id_alkohole).First();
+
+                wyjazd.ilosc_alkoholu = daneWyjazdu.Alkohol.IloscAlkoholu;
+                wyjazd.data = daneWyjazdu.Data.Date;
+                wyjazd.godzina = daneWyjazdu.Godzina;
+                wyjazd.kanal = kanal;
+                wyjazd.mandat = mandat;
+
+                eRosja.wyjazdy.Add(wyjazd);
+                eRosja.SaveChangesAsync();
+            }
+        }
+    }
+}

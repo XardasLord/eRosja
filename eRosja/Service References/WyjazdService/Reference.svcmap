@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="63e05c80-42d6-4ce3-8170-77ac4e6c72e5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.1.15/WCFeRosja/WyjazdService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WyjazdService3.xsd" MetadataType="Schema" ID="50756863-a858-4263-b0fe-921f2f4d77c4" SourceId="1" SourceUrl="http://192.168.1.15/WCFeRosja/WyjazdService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WyjazdService31.xsd" MetadataType="Schema" ID="713b8f87-ad4e-40c9-820b-a4fc0081a849" SourceId="1" SourceUrl="http://192.168.1.15/WCFeRosja/WyjazdService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WyjazdService1.wsdl" MetadataType="Wsdl" ID="5207a1fb-de73-4317-8592-64480d70333a" SourceId="1" SourceUrl="http://192.168.1.15/WCFeRosja/WyjazdService.svc?wsdl" />
+    <MetadataFile FileName="WyjazdService32.xsd" MetadataType="Schema" ID="4817696b-80a3-4823-b328-278edbd93f0c" SourceId="1" SourceUrl="http://192.168.1.15/WCFeRosja/WyjazdService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

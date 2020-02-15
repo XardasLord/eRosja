@@ -1,0 +1,154 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using System.Collections.ObjectModel;
+using eRosja.WyjazdService;
+using System.Windows.Media;
+
+namespace eRosja
+{
+    public partial class WyjazdSprawdz : PhoneApplicationPage
+    {
+        ObservableCollection<WyjazdService.Wyjazd> listaWyjazdow;
+        ObservableCollection<WyjazdService.Wyjazd> listaWyjazdowPosortowana;
+        WyjazdService.WyjazdServiceClient wyjazdUsluga;
+
+
+        public WyjazdSprawdz()
+        {
+            InitializeComponent();
+
+            listaWyjazdow = new ObservableCollection<WyjazdService.Wyjazd>();
+            wyjazdUsluga = new WyjazdService.WyjazdServiceClient();
+            wyjazdUsluga.PobierzWyjazdyCompleted += wyjazdUsluga_PobierzWyjazdyCompleted;
+
+
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            string login = localSettings.Values["loginUzytkownika"].ToString();
+
+            wyjazdUsluga.PobierzWyjazdyAsync(login);
+        }
+
+
+
+
+
+        void wyjazdUsluga_PobierzWyjazdyCompleted(object sender, WyjazdService.PobierzWyjazdyCompletedEventArgs e)
+        {
+            pbLadowanie.IsIndeterminate = false;
+
+            if (e.Result != null)
+            {
+                listaWyjazdow = e.Result;
+
+                // Sortujemy wg daty i godziny
+                listaWyjazdowPosortowana = new ObservableCollection<WyjazdService.Wyjazd>(listaWyjazdow.OrderByDescending(x => x.Data.Date).ThenByDescending(x=>x.Godzina));
+                llsWyjazdy.ItemsSource = listaWyjazdowPosortowana;
+                tbIloscWyjazdow.Text = listaWyjazdowPosortowana.Count.ToString();
+            }
+        }
+
+
+
+        // Wybranie jakiegoś wyjazdu
+        private void llsWyjazdy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                // Pobranie zaznaczonego wyjazdu
+                var wyjazd = (WyjazdService.Wyjazd)e.AddedItems[0];
+
+                WyczyscInformacjeOWyjezdzie();
+                WyswietlInformacjeOWyjezdzie(wyjazd);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+
+            //try
+            //{
+            //    LongListSelector ls = new LongListSelector();
+            //    ls = sender as LongListSelector;
+
+
+            //    SampleData selected_item = (SampleData)ls.SelectedItem;
+
+            //     Odznaczenie poprzedniego zaznaczenia
+            //    foreach (SampleData sd in ls.ItemsSource)
+            //    {
+            //        if (sd != selected_item)
+            //        {
+            //            sd.IsSelected = false;
+            //        }
+            //    }
+
+            //     set the selected item (this will cause the background color to change)
+            //    selected_item.IsSelected = true;
+            //}
+            //catch(Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}         
+        }
+
+
+
+
+        private void WyswietlInformacjeOWyjezdzie(Wyjazd wyjazd)
+        {
+            tbPrzejscie.Text = wyjazd.Przejscie;
+            tbStacja.Text = wyjazd.Paliwo.Stacja;
+            tbPaliwo.Text = wyjazd.Paliwo.RodzajPaliwa;
+            tbIloscPaliwa.Text = wyjazd.Paliwo.IloscPaliwa.ToString();
+            if (wyjazd.Papierosy != null)
+            {
+                tbSklepPapierosy.Text = wyjazd.Papierosy.SklepPapierosy;
+                tbPapierosy.Text = wyjazd.Papierosy.NazwaPapierosow;
+                tbIloscPapierosow.Text = wyjazd.Papierosy.IloscPapierosow.ToString();
+            }
+            if(wyjazd.Alkohol != null)
+            {
+                tbSklepAlkohol.Text = wyjazd.Alkohol.Sklep;
+                tbAlkohol.Text = wyjazd.Alkohol.Nazwa;
+                tbIloscAlkoholu.Text = wyjazd.Alkohol.Ilosc.ToString();
+            }
+            tbData.Text = wyjazd.Data.ToShortDateString();
+            tbGodzina.Text = wyjazd.Godzina.ToString();
+            if (wyjazd.Kanal == true)
+                tbKanal.Text = "*";
+            if (wyjazd.Mandat == true)
+                tbMandat.Text = "*";
+        }
+
+
+        private void WyczyscInformacjeOWyjezdzie()
+        {
+            tbPrzejscie.Text = "";
+            tbStacja.Text = "";
+            tbPaliwo.Text = "";
+            tbIloscPaliwa.Text = "";
+            tbSklepPapierosy.Text = "";
+            tbPapierosy.Text = "";
+            tbIloscPapierosow.Text = "";
+            tbSklepAlkohol.Text = "";
+            tbAlkohol.Text = "";
+            tbIloscAlkoholu.Text = "";
+            tbData.Text = "";
+            tbGodzina.Text = "";
+            tbKanal.Text = "";
+            tbMandat.Text = "";
+        }
+
+
+
+    }
+}

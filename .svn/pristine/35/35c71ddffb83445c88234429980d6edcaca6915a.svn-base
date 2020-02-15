@@ -1,0 +1,216 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Text;
+
+namespace WCFeRosja
+{
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "ZmianyService" in code, svc and config file together.
+    // NOTE: In order to launch WCF Test Client for testing this service, please select ZmianyService.svc or ZmianyService.svc.cs at the Solution Explorer and start debugging.
+    public class ZmianyService : IZmianyService
+    {
+
+        public Tuple<string, string> PobierzZmiane(DateTime dataSprawdzana)
+        {
+            DateTime? dataRozpoczeciaCyklu;
+            string zmianaDzien, zmianaNoc;
+
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                dataRozpoczeciaCyklu = eRosja.cykl_zmian.Where(c => c.data_poczatkowa != null).Select(c => c.data_poczatkowa).First();
+            }
+
+
+            zmianaDzien = WyliczZmianeDzien(dataSprawdzana, (DateTime)dataRozpoczeciaCyklu);
+            zmianaNoc = WyliczZmianeNoc(dataSprawdzana, (DateTime)dataRozpoczeciaCyklu);    
+            
+            Tuple<string, string> zmiana = new Tuple<string, string>(zmianaDzien, zmianaNoc);
+
+            return zmiana;
+        }
+
+
+
+        public string WyliczZmianeDzien(DateTime dataSprawdzana, DateTime dataRozpoczeciaCyklu)
+        {           
+            int wynik = 0;
+            bool przyszlosc = true;
+
+            if(dataSprawdzana >= dataRozpoczeciaCyklu)
+            // data z przyszłości w stosunku do tej z bazy
+            {
+                int dzien = 1;
+
+                // algorytm wyliczający liczbę, dzięki której będę mógł sprawdzić kto miał dzień
+                wynik = Math.Abs((dataSprawdzana.Subtract(dataRozpoczeciaCyklu).Days)) * 2 + dzien;
+            }
+            else
+            {
+                // data z przeszłości
+                wynik = Math.Abs((dataSprawdzana.Subtract(dataRozpoczeciaCyklu).Days)) * 2;
+                przyszlosc = false;
+            }
+
+            // dzięki tej zmiennej będę wiedział które ID w bazie odpowiada za zmianę tego dnia
+            int id = 0;
+
+            while(wynik != 0)
+            {
+                if((wynik - 8) >= 0)
+                {
+                    wynik = wynik - 8;
+                    id = 8;
+                }
+                else if((wynik - 7) >= 0)
+                {
+                    wynik = wynik - 7;
+                    id = 7;
+                }
+                else if ((wynik - 6) >= 0)
+                {
+                    wynik = wynik - 6;
+                    id = 6;
+                }
+                else if ((wynik - 5) >= 0)
+                {
+                    wynik = wynik - 5;
+                    id = 5;
+                }
+                else if ((wynik - 4) >= 0)
+                {
+                    wynik = wynik - 4;
+                    id = 4;
+                }
+                else if ((wynik - 3) >= 0)
+                {
+                    wynik = wynik - 3;
+                    id = 3;
+                }
+                else if ((wynik - 2) >= 0)
+                {
+                    wynik = wynik - 2;
+                    id = 2;
+                }
+                else if ((wynik - 1) >= 0)
+                {
+                    wynik = wynik - 1;
+                    id = 1;
+                }
+            }
+
+
+            if (przyszlosc == false)
+            {
+                // jeśli data jest z przeszłości
+                id = 9 - id;
+            }
+
+
+            string zmianaDzien = "";
+
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                zmianaDzien = eRosja.cykl_zmian.Where(c => c.id_cykl_zmian == id).Select(c => c.zmiany.nazwa).First();
+            }
+
+            return zmianaDzien;
+        }
+
+
+
+
+
+        public string WyliczZmianeNoc(DateTime dataSprawdzana, DateTime dataRozpoczeciaCyklu)
+        {
+            int wynik = 0;
+            bool przyszlosc = true;
+
+            if (dataSprawdzana >= dataRozpoczeciaCyklu)
+            // data z przyszłości w stosunku do tej z bazy
+            {
+                int noc = 2;
+
+                // algorytm wyliczający liczbę, dzięki której będę mógł sprawdzić kto miał dzień
+                wynik = Math.Abs((dataSprawdzana.Subtract(dataRozpoczeciaCyklu).Days)) * 2 + noc;
+            }
+            else
+            {
+                // data z przeszłości
+                int noc = 1;
+
+                wynik = Math.Abs((dataSprawdzana.Subtract(dataRozpoczeciaCyklu).Days)) * 2 - noc;
+                przyszlosc = false;
+            }
+
+            // dzięki tej zmiennej będę wiedział które ID w bazie odpowiada za zmianę tego dnia
+            int id = 0;
+
+            while (wynik != 0)
+            {
+                if ((wynik - 8) >= 0)
+                {
+                    wynik = wynik - 8;
+                    id = 8;
+                }
+                else if ((wynik - 7) >= 0)
+                {
+                    wynik = wynik - 7;
+                    id = 7;
+                }
+                else if ((wynik - 6) >= 0)
+                {
+                    wynik = wynik - 6;
+                    id = 6;
+                }
+                else if ((wynik - 5) >= 0)
+                {
+                    wynik = wynik - 5;
+                    id = 5;
+                }
+                else if ((wynik - 4) >= 0)
+                {
+                    wynik = wynik - 4;
+                    id = 4;
+                }
+                else if ((wynik - 3) >= 0)
+                {
+                    wynik = wynik - 3;
+                    id = 3;
+                }
+                else if ((wynik - 2) >= 0)
+                {
+                    wynik = wynik - 2;
+                    id = 2;
+                }
+                else if ((wynik - 1) >= 0)
+                {
+                    wynik = wynik - 1;
+                    id = 1;
+                }
+            }
+
+
+            if (przyszlosc == false)
+            {
+                // jeśli data jest z przeszłości
+                id = 9 - id;
+            }
+
+
+            string zmiananoc = "";
+
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                zmiananoc = eRosja.cykl_zmian.Where(c => c.id_cykl_zmian == id).Select(c => c.zmiany.nazwa).First();
+            }
+
+
+            return zmiananoc;
+        }
+    }
+}

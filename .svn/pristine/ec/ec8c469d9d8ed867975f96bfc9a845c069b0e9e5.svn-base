@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+
+namespace eRosja
+{
+    public partial class StronaGlowna : PhoneApplicationPage
+    {
+        public StronaGlowna()
+        {
+            InitializeComponent();
+        }
+
+
+        private void btnSprawdzCeny_Click(object sender, RoutedEventArgs e)
+        {
+            Uri uriCeny = new Uri("/Ceny.xaml", UriKind.Relative);
+            NavigationService.Navigate(uriCeny);
+        }
+
+
+        private void btnSprawdzKurs_Click(object sender, RoutedEventArgs e)
+        {
+            Uri uriKurs = new Uri("/Kurs.xaml", UriKind.Relative);
+            NavigationService.Navigate(uriKurs);
+        }
+
+
+
+        private void btnDodajWyjazd_Click(object sender, RoutedEventArgs e)
+        {
+            Uri uriWyjazdDodaj = new Uri("/WyjazdDodaj.xaml", UriKind.Relative);
+            NavigationService.Navigate(uriWyjazdDodaj);
+        }
+
+
+
+
+        private void btnWyloguj_Click(object sender, EventArgs e)
+        {
+            // Przy wylogowaniu kasujemy ze zmiennych aplikacji informację o zalogowanym użytkowniku
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values.Remove("loginUzytkownika");
+
+            // Przechodzimy na stronę logowania
+            Uri uriWyloguj = new Uri("/MainPage.xaml", UriKind.Relative);
+            NavigationService.Navigate(uriWyloguj);
+        }
+
+
+
+
+        private void btnSprawdzWyjazd_Click(object sender, RoutedEventArgs e)
+        {
+            Uri uriWyjazdSprawdz = new Uri("/WyjazdSprawdz.xaml", UriKind.Relative);
+            NavigationService.Navigate(uriWyjazdSprawdz);
+        }
+    }
+}

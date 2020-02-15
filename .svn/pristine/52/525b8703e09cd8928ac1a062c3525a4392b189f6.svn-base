@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CenyMiejscaService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://192.168.1.15/WCFeRosja/CenyMiejscaService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.1.15/WCFeRosja/CenyMiejscaService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.1.15/WCFeRosja/CenyMiejscaService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://192.168.1.15/WCFeRosja/CenyMiejscaService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCFeRosja" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICenyMiejscaService_PobierzPrzejscia_InputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzPrzejscia" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzPrzejscia_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzPrzejsciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzStacjeBenzynowe_InputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzStacjeBenzynowe" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzStacjeBenzynowe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzStacjeBenzynoweResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzNazwyPaliw_InputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzNazwyPaliw" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzNazwyPaliw_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzNazwyPaliwResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzCenyPaliw_InputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzCenyPaliw" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzCenyPaliw_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzCenyPaliwResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzCenePaliwa_InputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzCenePaliwa" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzCenePaliwa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzCenePaliwaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzSklepy_InputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzSklepy" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzSklepy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzSklepyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzKursRubla_InputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzKursRubla" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzKursRubla_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzKursRublaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzKursEuro_InputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzKursEuro" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzKursEuro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzKursEuroResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzPapierosy_InputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzPapierosy" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzPapierosy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzPapierosyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzAlkohole_InputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzAlkohole" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzAlkohole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzAlkoholeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzDostepnePaliwa_InputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzDostepnePaliwa" />
+  </wsdl:message>
+  <wsdl:message name="ICenyMiejscaService_PobierzDostepnePaliwa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PobierzDostepnePaliwaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICenyMiejscaService">
+    <wsdl:operation name="PobierzPrzejscia">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzPrzejscia" message="tns:ICenyMiejscaService_PobierzPrzejscia_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzPrzejsciaResponse" message="tns:ICenyMiejscaService_PobierzPrzejscia_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PobierzStacjeBenzynowe">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzStacjeBenzynowe" message="tns:ICenyMiejscaService_PobierzStacjeBenzynowe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzStacjeBenzynoweResponse" message="tns:ICenyMiejscaService_PobierzStacjeBenzynowe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PobierzNazwyPaliw">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzNazwyPaliw" message="tns:ICenyMiejscaService_PobierzNazwyPaliw_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzNazwyPaliwResponse" message="tns:ICenyMiejscaService_PobierzNazwyPaliw_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PobierzCenyPaliw">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzCenyPaliw" message="tns:ICenyMiejscaService_PobierzCenyPaliw_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzCenyPaliwResponse" message="tns:ICenyMiejscaService_PobierzCenyPaliw_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PobierzCenePaliwa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzCenePaliwa" message="tns:ICenyMiejscaService_PobierzCenePaliwa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzCenePaliwaResponse" message="tns:ICenyMiejscaService_PobierzCenePaliwa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PobierzSklepy">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzSklepy" message="tns:ICenyMiejscaService_PobierzSklepy_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzSklepyResponse" message="tns:ICenyMiejscaService_PobierzSklepy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PobierzKursRubla">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzKursRubla" message="tns:ICenyMiejscaService_PobierzKursRubla_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzKursRublaResponse" message="tns:ICenyMiejscaService_PobierzKursRubla_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PobierzKursEuro">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzKursEuro" message="tns:ICenyMiejscaService_PobierzKursEuro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzKursEuroResponse" message="tns:ICenyMiejscaService_PobierzKursEuro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PobierzPapierosy">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzPapierosy" message="tns:ICenyMiejscaService_PobierzPapierosy_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzPapierosyResponse" message="tns:ICenyMiejscaService_PobierzPapierosy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PobierzAlkohole">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzAlkohole" message="tns:ICenyMiejscaService_PobierzAlkohole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzAlkoholeResponse" message="tns:ICenyMiejscaService_PobierzAlkohole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PobierzDostepnePaliwa">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzDostepnePaliwa" message="tns:ICenyMiejscaService_PobierzDostepnePaliwa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICenyMiejscaService/PobierzDostepnePaliwaResponse" message="tns:ICenyMiejscaService_PobierzDostepnePaliwa_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICenyMiejscaService" type="tns:ICenyMiejscaService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PobierzPrzejscia">
+      <soap:operation soapAction="http://tempuri.org/ICenyMiejscaService/PobierzPrzejscia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PobierzStacjeBenzynowe">
+      <soap:operation soapAction="http://tempuri.org/ICenyMiejscaService/PobierzStacjeBenzynowe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PobierzNazwyPaliw">
+      <soap:operation soapAction="http://tempuri.org/ICenyMiejscaService/PobierzNazwyPaliw" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PobierzCenyPaliw">
+      <soap:operation soapAction="http://tempuri.org/ICenyMiejscaService/PobierzCenyPaliw" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PobierzCenePaliwa">
+      <soap:operation soapAction="http://tempuri.org/ICenyMiejscaService/PobierzCenePaliwa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PobierzSklepy">
+      <soap:operation soapAction="http://tempuri.org/ICenyMiejscaService/PobierzSklepy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PobierzKursRubla">
+      <soap:operation soapAction="http://tempuri.org/ICenyMiejscaService/PobierzKursRubla" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PobierzKursEuro">
+      <soap:operation soapAction="http://tempuri.org/ICenyMiejscaService/PobierzKursEuro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PobierzPapierosy">
+      <soap:operation soapAction="http://tempuri.org/ICenyMiejscaService/PobierzPapierosy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PobierzAlkohole">
+      <soap:operation soapAction="http://tempuri.org/ICenyMiejscaService/PobierzAlkohole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PobierzDostepnePaliwa">
+      <soap:operation soapAction="http://tempuri.org/ICenyMiejscaService/PobierzDostepnePaliwa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CenyMiejscaService">
+    <wsdl:port name="BasicHttpBinding_ICenyMiejscaService" binding="tns:BasicHttpBinding_ICenyMiejscaService">
+      <soap:address location="http://192.168.1.15/WCFeRosja/CenyMiejscaService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

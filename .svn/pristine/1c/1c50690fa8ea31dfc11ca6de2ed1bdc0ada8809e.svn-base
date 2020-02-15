@@ -1,0 +1,31 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IUzytkownikService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="BasicHttpBinding_ICenyMiejscaService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="BasicHttpBinding_IWyjazdService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://192.168.1.20/WCFeRosja/UzytkownikService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IUzytkownikService"
+                contract="UzytkownikService.IUzytkownikService" name="BasicHttpBinding_IUzytkownikService" />
+            <endpoint address="http://192.168.1.20/WCFeRosja/CenyMiejscaService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ICenyMiejscaService"
+                contract="CenyMiejscaService.ICenyMiejscaService" name="BasicHttpBinding_ICenyMiejscaService" />
+            <endpoint address="http://192.168.1.20/WCFeRosja/WyjazdService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IWyjazdService"
+                contract="WyjazdService.IWyjazdService" name="BasicHttpBinding_IWyjazdService" />
+        </client>
+    </system.serviceModel>
+</configuration>

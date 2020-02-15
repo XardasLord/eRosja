@@ -1,0 +1,121 @@
+﻿using eRosja.WyjazdService;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using SQLite;
+
+namespace eRosja.SQLiteDB
+{
+    class WyjazdSQLite
+    {
+
+        public List<Wyjazd> PobierzWyjazdy(string DB_PATH, string loginUzytkownika)
+        {
+            List<Wyjazd> listaWyjazdow = new List<Wyjazd>();
+            List<wyjazdy> listaWyjazdowEntity = new List<wyjazdy>();
+
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                var uzytkownicy = conn.Table<uzytkownicy>().Where(u => u.login.Equals(loginUzytkownika)).First();
+                listaWyjazdowEntity = conn.Table<wyjazdy>().Where(w => w.id_uzytkownicy == uzytkownicy.id_uzytkownicy).ToList();
+            }
+
+            // Przekształca listę pobraną bezpośrednio z bazy na listę nazw (zamiast ID) dla klienta
+            listaWyjazdow = PrzetworzWyjazdyDlaKlienta(DB_PATH, listaWyjazdowEntity);
+
+
+            return listaWyjazdow;
+        }
+
+
+
+
+        /* Przetwarza dane wyjazdu pobrane z bazy (ID) na NAZWY dla klienta
+           Konwersja:
+           ID - NAZWY */
+        private List<Wyjazd> PrzetworzWyjazdyDlaKlienta(string DB_PATH, List<wyjazdy> listaWyjazdowEntity)
+        {
+            List<Wyjazd> listaWyjazdow = new List<Wyjazd>();
+
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                // Przejście przez każdy z wyjazdów
+                for (int i = 0; i < listaWyjazdowEntity.Count; i++)
+                {
+                    Wyjazd wyjazd = new Wyjazd();
+                    Paliwo paliwo = new Paliwo();
+                    Alkohol alkohol = new Alkohol();
+                    Papierosy papierosy = new Papierosy();
+                    wyjazd.Paliwo = paliwo;
+                    wyjazdy wyjazdEntity = new wyjazdy();
+
+                    wyjazdEntity = listaWyjazdowEntity[i];
+
+                    // Zamiana każdego z wyjazdów na wyjazd dla klienta
+                    // ID - NAZWY
+                    var uzytkownicy = conn.Table<uzytkownicy>().Where(u => u.id_uzytkownicy == wyjazdEntity.id_uzytkownicy).First();
+                    wyjazd.LoginUzytkownika = uzytkownicy.login;
+
+                    var przejscia = conn.Table<przejscia>().Where(p => p.id_przejscia == wyjazdEntity.id_przejscia).First();
+                    wyjazd.Przejscie = przejscia.nazwa;
+
+                    var stacje = conn.Table<stacje_benzynowe>().Where(s => s.id_stacje_benzynowe == wyjazdEntity.id_stacje_benzynowe).First();
+                    wyjazd.Paliwo.Stacja = stacje.nazwa;
+
+                    var paliwa = conn.Table<paliwa>().Where(p => p.id_paliwa == wyjazdEntity.id_paliwa).First();
+                    wyjazd.Paliwo.RodzajPaliwa = paliwa.nazwa;
+
+                    wyjazd.Paliwo.IloscPaliwa = wyjazdEntity.ilosc_paliwa;
+
+
+                    if (wyjazdEntity.id_sklepy_papierosy != null)
+                    {
+                        wyjazd.Papierosy = papierosy;
+
+                        var sklepy = conn.Table<sklepy>().Where(s => s.id_sklepy == wyjazdEntity.id_sklepy_papierosy).First();
+                        wyjazd.Papierosy.Sklep = sklepy.nazwa;
+
+                        var papierosySQLite = conn.Table<papierosy>().Where(p => p.id_papierosy == wyjazdEntity.id_papierosy).First();
+                        wyjazd.Papierosy.Nazwa = papierosySQLite.nazwa;
+
+                        wyjazd.Papierosy.Ilosc = (int)wyjazdEntity.ilosc_papierosow;
+                    }
+
+                    if (wyjazdEntity.id_sklepy_alkohole != null)
+                    {
+                        wyjazd.Alkohol = alkohol;
+
+                        var sklepy = conn.Table<sklepy>().Where(s => s.id_sklepy == wyjazdEntity.id_sklepy_alkohole).First();
+                        wyjazd.Alkohol.Sklep = sklepy.nazwa;
+
+                        var alkoholeSQLite = conn.Table<alkohole>().Where(a => a.id_alkohole == wyjazdEntity.id_alkohole).First();
+                        wyjazd.Alkohol.Nazwa = alkoholeSQLite.nazwa;
+
+                        wyjazd.Alkohol.Ilosc = (decimal)wyjazdEntity.ilosc_alkoholu;
+                    }
+
+                    wyjazd.Data = wyjazdEntity.data;
+
+                    if (wyjazdEntity.kanal == 1)
+                        wyjazd.Kanal = true;
+                    else
+                        wyjazd.Kanal = false;
+
+                    if (wyjazdEntity.mandat == 1)
+                        wyjazd.Mandat = true;
+                    else
+                        wyjazd.Mandat = false;
+
+                    // Dodanie przetworzonego wyjazdu dla klienta do listy
+                    listaWyjazdow.Add(wyjazd);
+                }
+            }
+
+            return listaWyjazdow;
+        }
+    }
+}

@@ -1,0 +1,308 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="eRosja.Strony.Offline.WyjazdSprawdzOffline"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="E-ROSJA" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Offline" Margin="140,-27,0,0" Foreground="Red"/>
+        </StackPanel>
+
+
+
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Margin="12,10,12,0" Grid.Row="1">
+
+            <ProgressBar 
+                        x:Name="pbLadowanie" 
+                        HorizontalAlignment="Left" 
+                        Height="15" 
+                        Margin="44,-31,0,0" 
+                        VerticalAlignment="Top" 
+                        Width="363" 
+                        IsIndeterminate="True"/>
+
+            <!--LongListSelector z wyjazdami-->
+            <phone:LongListSelector
+                x:Name="llsWyjazdy"
+                HorizontalAlignment="Left" 
+                Height="321" 
+                Margin="10,32,0,0" 
+                VerticalAlignment="Top" 
+                Width="436" 
+                Background="Wheat"
+                Foreground="Black"
+                SelectionChanged="llsWyjazdy_SelectionChanged" >
+                <phone:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Przejscie}"/>
+                            <TextBlock>
+                                <Run Text="{Binding Data, StringFormat=d}"/>
+                                <Run Text=", "/>
+                                <Run Text="{Binding Godzina}"/>
+                            </TextBlock>
+                            <Line X1="0" 
+                                  Y1="5" 
+                                  X2="500" 
+                                  Y2="5" 
+                                  Stroke="SkyBlue" 
+                                  HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center" 
+                                  Height="5"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </phone:LongListSelector.ItemTemplate>
+            </phone:LongListSelector>
+
+
+            <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Ilość odbytych wyjazdów:" VerticalAlignment="Top"/>
+            <TextBlock x:Name="tbIloscWyjazdow" HorizontalAlignment="Left" Margin="238,-6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="26" FontWeight="Bold"/>
+
+
+            <!--Szczegółowe informacje o wybranym wyjeździe-->
+            <Grid HorizontalAlignment="Left" 
+                  Height="318" 
+                  Margin="10,358,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="436" 
+                  Background="#FF858271">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+
+                <!--Kolory poszczególnych kolumn i wierszy-->
+                <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="3" Background="Bisque" />
+                <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" Background="LightYellow" />
+                <Grid Grid.Row="4" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" Background="LightCyan" />
+                <Grid Grid.Row="7" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" Background="Lavender" />
+                <Grid Grid.Row="10" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Background="AliceBlue" />
+                <Grid Grid.Row="12" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Background="White" />
+
+
+                <!--Nazwy w pionie w wierszach-->
+                <TextBlock 
+                    Text="Przejście" 
+                    Grid.Row="0" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+
+                <TextBlock 
+                    Text="Stacja benzynowa" 
+                    Grid.Row="1" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+
+                <TextBlock 
+                    Text="Paliwo" 
+                    Grid.Row="2" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+
+                <TextBlock 
+                    Text="Ilość litrów" 
+                    Grid.Row="3" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+
+                <TextBlock 
+                    Text="Sklep" 
+                    Grid.Row="4" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+
+                <TextBlock 
+                    Text="Papierosy" 
+                    Grid.Row="5" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+                <TextBlock 
+                    Text="Ilość sztuk" 
+                    Grid.Row="6" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+                <TextBlock 
+                    Text="Sklep" 
+                    Grid.Row="7" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+                <TextBlock 
+                    Text="Alkohol" 
+                    Grid.Row="8" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+                <TextBlock 
+                    Text="Ilość litrów" 
+                    Grid.Row="9" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+                <TextBlock 
+                    Text="Data" 
+                    Grid.Row="10" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+                <TextBlock 
+                    Text="Godzina" 
+                    Grid.Row="11" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+                <TextBlock 
+                    Text="Kanał" 
+                    Grid.Row="12" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+                <TextBlock 
+                    Text="Mandat" 
+                    Grid.Row="13" 
+                    Grid.Column="1" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="18"/>
+
+                <!--Teksty pod skosem określające kategorię-->
+                <TextBlock 
+                    Text="Paliwo" 
+                    Grid.Row="1" 
+                    Grid.Column="0" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="14" RenderTransformOrigin="0.5,0.4" Grid.ColumnSpan="2" Margin="-8.441,4.94,138.012,7.059" Grid.RowSpan="2" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                    <TextBlock.RenderTransform>
+                        <CompositeTransform 
+                            Rotation="-65"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+                <TextBlock 
+                    Text="Papierosy" 
+                    Grid.Row="4" 
+                    Grid.Column="0" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="14" RenderTransformOrigin="0.6,0.8" Grid.ColumnSpan="2" Margin="-8.441,4.94,138.012,7.059" Grid.RowSpan="2" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                    <TextBlock.RenderTransform>
+                        <CompositeTransform 
+                            Rotation="-65"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+                <TextBlock 
+                    Text="Alkohol" 
+                    Grid.Row="7" 
+                    Grid.Column="0" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="13" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Margin="-8.441,4.94,138.012,7.059" Grid.RowSpan="2" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                    <TextBlock.RenderTransform>
+                        <CompositeTransform 
+                            Rotation="-65"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+                <TextBlock 
+                    Text="Czas" 
+                    Grid.Row="9" 
+                    Grid.Column="0" 
+                    Foreground="Black" 
+                    VerticalAlignment="Center"
+                    FontSize="13" RenderTransformOrigin="0.6,0.5" Grid.ColumnSpan="2" Margin="-8.441,4.94,138.012,7.059" Grid.RowSpan="2" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                    <TextBlock.RenderTransform>
+                        <CompositeTransform 
+                            Rotation="-65"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+
+                <!--TextBoxy w tabeli, które zostaną wypełnione w kodzie-->
+                <TextBlock x:Name="tbPrzejscie" Text="" Grid.Row="0" Grid.Column="2" Foreground="Black" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="tbStacja" Text="" Grid.Row="1" Grid.Column="2" Foreground="Black" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="tbPaliwo" Text="" Grid.Row="2" Grid.Column="2" Foreground="Black" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="tbIloscPaliwa" Text="" Grid.Row="3" Grid.Column="2" Foreground="Black" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="tbSklepPapierosy" Text="" Grid.Row="4" Grid.Column="2" Foreground="Black" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="tbPapierosy" Text="" Grid.Row="5" Grid.Column="2" Foreground="Black" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="tbIloscPapierosow" Text="" Grid.Row="6" Grid.Column="2" Foreground="Black" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="tbSklepAlkohol" Text="" Grid.Row="7" Grid.Column="2" Foreground="Black" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="tbAlkohol" Text="" Grid.Row="8" Grid.Column="2" Foreground="Black" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="tbIloscAlkoholu" Text="" Grid.Row="9" Grid.Column="2" Foreground="Black" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="tbData" Text="" Grid.Row="10" Grid.Column="2" Foreground="Black" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="tbGodzina" Text="" Grid.Row="11" Grid.Column="2" Foreground="Black" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="tbKanal" Text="" Grid.Row="12" Grid.Column="2" Foreground="Black" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <TextBlock x:Name="tbMandat" Text="" Grid.Row="13" Grid.Column="2" Foreground="Black" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+
+
+            </Grid>
+
+
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

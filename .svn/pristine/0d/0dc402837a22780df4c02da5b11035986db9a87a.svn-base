@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace eRosja
+{
+    public class Uzytkownicy
+    {
+        //The Id property is marked as the Primary Key
+        [SQLite.PrimaryKey, SQLite.AutoIncrement]
+        public int id_uzytkownicy { get; set; }
+        public string login { get; set; }
+        public string haslo { get; set; }
+        public string email { get; set; }
+        public DateTime zarejestrowano { get; set; }
+        public DateTime ostatnie_logowanie { get; set; }
+        public int status { get; set; }
+
+        public Uzytkownicy()
+        {
+            //empty constructor
+        }
+        //public Contacts(string name, string phone_no)
+        //{
+        //    Name = name;
+        //    PhoneNumber = phone_no;
+        //    CreationDate = DateTime.Now.ToString();
+        //}
+    }
+}

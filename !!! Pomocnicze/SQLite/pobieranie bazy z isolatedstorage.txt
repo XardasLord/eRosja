@@ -1,0 +1,4 @@
+Product ID: 6fbca5d6-0b94-4599-beca-6345f581fa24
+
+ISETool.exe ts de 6fbca5d6-0b94-4599-beca-6345f581fa24 d:\bazy
+

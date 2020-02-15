@@ -1,0 +1,38 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IUzytkownikService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="BasicHttpBinding_ICenyMiejscaService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="BasicHttpBinding_IWyjazdService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="BasicHttpBinding_IZmianyService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://xardaslord.ddns.net/WCFeRosja/CenyMiejscaService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ICenyMiejscaService"
+                contract="CenyMiejscaService.ICenyMiejscaService" name="BasicHttpBinding_ICenyMiejscaService" />
+            <endpoint address="http://xardaslord.ddns.net/WCFeRosja/UzytkownikService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IUzytkownikService"
+                contract="UzytkownikService.IUzytkownikService" name="BasicHttpBinding_IUzytkownikService" />
+            <endpoint address="http://xardaslord.ddns.net/WCFeRosja/WyjazdService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IWyjazdService"
+                contract="WyjazdService.IWyjazdService" name="BasicHttpBinding_IWyjazdService" />
+            <endpoint address="http://xardaslord.ddns.net/WCFeRosja/ZmianyService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IZmianyService"
+                contract="ZmianyService.IZmianyService" name="BasicHttpBinding_IZmianyService" />
+        </client>
+    </system.serviceModel>
+</configuration>

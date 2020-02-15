@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+
+namespace eRosja
+{
+    public class kantory
+    {
+        public kantory()
+        {
+            this.kursy = new HashSet<kursy>();
+        }
+
+        [SQLite.PrimaryKey, SQLite.AutoIncrement]
+        public int id_kantory { get; set; }
+        public string nazwa { get; set; }
+
+        public virtual ICollection<kursy> kursy { get; set; }
+    }
+}

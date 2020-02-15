@@ -1,0 +1,238 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using System.Collections.ObjectModel;
+
+namespace eRosja
+{
+    public partial class Ceny : PhoneApplicationPage
+    {
+        CenyMiejscaService.CenyMiejscaServiceClient cenyMiejscaUsluga;
+        ObservableCollection<string> listaPrzejsc;
+        ObservableCollection<string> listaStacji;
+        ObservableCollection<string> listaPaliw;
+        ObservableCollection<string> listaSklepow;
+        ObservableCollection<string> listaPapierosow;
+        Dictionary<long, decimal> cenyPaliw;
+
+
+        public Ceny()
+        {
+            InitializeComponent();
+
+            listaPrzejsc = new ObservableCollection<string>();
+            listaStacji = new ObservableCollection<string>();
+            listaPaliw = new ObservableCollection<string>();
+            listaSklepow = new ObservableCollection<string>();
+            listaPapierosow = new ObservableCollection<string>();
+            cenyPaliw = new Dictionary<long, decimal>();
+            cenyMiejscaUsluga = new CenyMiejscaService.CenyMiejscaServiceClient();
+            cenyMiejscaUsluga.PobierzPrzejsciaCompleted += cenyMiejscaUsluga_PobierzPrzejsciaCompleted;
+            cenyMiejscaUsluga.PobierzStacjeBenzynoweCompleted += cenyMiejscaUsluga_PobierzStacjeBenzynoweCompleted;
+            cenyMiejscaUsluga.PobierzNazwyPaliwCompleted += cenyMiejscaUsluga_PobierzNazwyPaliwCompleted;
+            cenyMiejscaUsluga.PobierzCenyPaliwCompleted += cenyMiejscaUsluga_PobierzCenyPaliwCompleted;
+            cenyMiejscaUsluga.PobierzSklepyCompleted += cenyMiejscaUsluga_PobierzSklepyCompleted;
+            cenyMiejscaUsluga.PobierzPapierosyCompleted += cenyMiejscaUsluga_PobierzPapierosyCompleted;
+            
+
+            cenyMiejscaUsluga.PobierzPrzejsciaAsync();
+            cenyMiejscaUsluga.PobierzNazwyPaliwAsync();
+        }
+
+        
+
+        
+
+        
+
+        // Ustawia nazwy paliw w gridzie
+        private void UstawNazwyPaliw()
+        {
+            TextBlock tb = new TextBlock();
+
+            for (int i = 1; i <= listaPaliw.Count; i++)
+            {
+                // Przechodzimy przez każdą kontrolkę o nazwie 'tbPaliwo1, tbPaliwo2...' 
+                // i ustawiamy jej tekst na nazwę paliwa pobranego z bazy
+                object kontrolka = LayoutRoot.FindName("tbPaliwo" + i);
+                tb = (TextBlock)kontrolka;
+                tb.Text = listaPaliw.ElementAt(i - 1).ToString();
+            }
+        }
+
+
+        // Ustawia ceny paliw w gridzie
+        private void UstawCenyPaliw()
+        {
+            TextBlock tb = new TextBlock();
+
+            for (int i = 1; i <= listaPaliw.Count; i++)
+            {
+                foreach (long id_paliwa in cenyPaliw.Keys)
+                {
+                    if (id_paliwa == i)
+                    {
+                        object kontrolka = LayoutRoot.FindName("tbCena" + i);
+                        tb = (TextBlock)kontrolka;
+                        tb.Text = cenyPaliw.FirstOrDefault(x => x.Key == i).Value.ToString();
+                    }
+                }
+            }
+        }
+
+
+        // Ustawia ceny paliw w gridzie
+        private void ZerujCenyPaliw()
+        {
+            TextBlock tb = new TextBlock();
+
+            for (int i = 1; i <= listaPaliw.Count; i++)
+            {
+                object kontrolka = LayoutRoot.FindName("tbCena" + i);
+                tb = (TextBlock)kontrolka;
+                tb.Text = "";
+            }
+        }
+
+
+        
+        void cenyMiejscaUsluga_PobierzPrzejsciaCompleted(object sender, CenyMiejscaService.PobierzPrzejsciaCompletedEventArgs e)
+        {
+            listaPrzejsc.Clear();
+
+            if (e.Result != null)
+            {
+                // Wypełniamy ListPickera przejściami granicznymi
+                listaPrzejsc = e.Result;
+                lpPrzejsciaPaliwo.ItemsSource = listaPrzejsc;
+                lpPrzejsciaPapierosy.ItemsSource = listaPrzejsc;
+            }
+        }
+
+
+        void cenyMiejscaUsluga_PobierzStacjeBenzynoweCompleted(object sender, CenyMiejscaService.PobierzStacjeBenzynoweCompletedEventArgs e)
+        {
+            listaStacji.Clear();
+
+            if (e.Result != null)
+            {
+                // Wypełniamy ListPickera stacjami benzynowymi
+                listaStacji = e.Result;
+                lpStacjePaliwo.ItemsSource = listaStacji;
+            }
+        }
+
+
+        void cenyMiejscaUsluga_PobierzNazwyPaliwCompleted(object sender, CenyMiejscaService.PobierzNazwyPaliwCompletedEventArgs e)
+        {
+            if (e.Result != null)
+            {
+                // Pobieramy listę paliw
+                listaPaliw = e.Result;
+
+                UstawNazwyPaliw();
+            }
+        }
+
+
+        void cenyMiejscaUsluga_PobierzCenyPaliwCompleted(object sender, CenyMiejscaService.PobierzCenyPaliwCompletedEventArgs e)
+        {
+            if (e.Result != null)
+            {
+                // Pobieramy ceny paliw do słownika
+                cenyPaliw = e.Result;
+
+                ZerujCenyPaliw();
+                UstawCenyPaliw();
+            }
+        }
+
+
+        void cenyMiejscaUsluga_PobierzSklepyCompleted(object sender, CenyMiejscaService.PobierzSklepyCompletedEventArgs e)
+        {
+            listaSklepow.Clear();
+
+            if (e.Result != null)
+            {
+                // Pobieramy ceny paliw do słownika
+                listaSklepow = e.Result;
+
+                lpSklepyPapierosy.ItemsSource = listaSklepow;
+            }
+        }
+
+
+        void cenyMiejscaUsluga_PobierzPapierosyCompleted(object sender, CenyMiejscaService.PobierzPapierosyCompletedEventArgs e)
+        {
+            listaPapierosow.Clear();
+
+            if (e.Result != null)
+            {
+                listaPapierosow = e.Result;
+
+                lpPapierosy.ItemsSource = listaPapierosow;
+            }
+        }
+
+
+
+
+        // Zmiana przejścia granicznego przy PALIWIE
+        private void lpPrzejscia_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lpPrzejsciaPaliwo.SelectedItem != null)
+            {
+                string nazwaPrzejscia = lpPrzejsciaPaliwo.SelectedItem.ToString();
+                cenyMiejscaUsluga.PobierzStacjeBenzynoweAsync(nazwaPrzejscia);
+            }          
+        }
+
+
+        // Zmiana stacji benzynowej przy PALIWIE
+        private void lpStacje_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lpStacjePaliwo.SelectedItem != null)
+            {
+                string nazwaPrzejscia, nazwaStacji;
+
+                nazwaPrzejscia = lpPrzejsciaPaliwo.SelectedItem.ToString();
+                nazwaStacji = lpStacjePaliwo.SelectedItem.ToString();
+                tbNazwaStacji.Text = nazwaStacji;
+
+                cenyMiejscaUsluga.PobierzCenyPaliwAsync(nazwaPrzejscia, nazwaStacji);
+            }   
+        }
+
+
+        // Zmiana przejścia granicznego przy PAPIEROSACH
+        private void lpPrzejsciaPapierosy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lpPrzejsciaPapierosy.SelectedItem != null)
+            {
+                string nazwaPrzejscia = lpPrzejsciaPapierosy.SelectedItem.ToString();
+                cenyMiejscaUsluga.PobierzSklepyAsync(nazwaPrzejscia);
+            } 
+        }
+
+
+        // Zmiana sklepu przy PAPIEROSACH
+        private void lpSklepy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lpSklepyPapierosy.SelectedItem != null)
+            {
+                string nazwaPrzejscia, nazwaSklepu;
+
+                nazwaPrzejscia = lpPrzejsciaPapierosy.SelectedItem.ToString();
+                nazwaSklepu = lpSklepyPapierosy.SelectedItem.ToString();
+
+                cenyMiejscaUsluga.PobierzPapierosyAsync(nazwaPrzejscia, nazwaSklepu);
+            }
+        }
+    }
+}

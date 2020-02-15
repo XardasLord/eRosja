@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace WCFeRosja
+{
+    public class Alkohol
+    {
+        public string SklepAlkohol { get; set; }
+        public string NazwaAlkoholu { get; set; }
+        public double IloscAlkoholu { get; set; }
+    }
+}

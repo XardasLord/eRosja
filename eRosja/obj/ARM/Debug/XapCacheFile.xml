@@ -1,0 +1,44 @@
+﻿<xapCache source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\ARM\Debug\eRosja_Debug_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="2016-03-08 07:27:01">
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\ARM\Debug\resources.pri" archivePath="resources.pri" lastWriteTime="2016-03-08 07:26:59" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\ARM\Debug\eRosja.dll" archivePath="eRosja.dll" lastWriteTime="2016-03-08 07:26:58" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\AppBar1\stop.png" archivePath="Assets\AppBar1\stop.png" lastWriteTime="2014-10-15 18:07:24" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\AppBar2\feature.settings.png" archivePath="Assets\AppBar2\feature.settings.png" lastWriteTime="2014-10-15 18:07:24" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\AppBar\add.png" archivePath="Assets\AppBar\add.png" lastWriteTime="2014-10-15 18:07:24" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\Polska.png" archivePath="Assets\Polska.png" lastWriteTime="2014-12-20 17:24:21" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\Rosja.png" archivePath="Assets\Rosja.png" lastWriteTime="2014-12-20 17:24:21" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Toolkit.Content\ApplicationBar.Add.png" archivePath="Toolkit.Content\ApplicationBar.Add.png" lastWriteTime="2014-12-14 16:40:18" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Toolkit.Content\ApplicationBar.Cancel.png" archivePath="Toolkit.Content\ApplicationBar.Cancel.png" lastWriteTime="2014-12-14 16:40:18" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Toolkit.Content\ApplicationBar.Check.png" archivePath="Toolkit.Content\ApplicationBar.Check.png" lastWriteTime="2014-12-14 16:40:18" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Toolkit.Content\ApplicationBar.Delete.png" archivePath="Toolkit.Content\ApplicationBar.Delete.png" lastWriteTime="2014-12-14 16:40:18" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Toolkit.Content\ApplicationBar.Select.png" archivePath="Toolkit.Content\ApplicationBar.Select.png" lastWriteTime="2014-12-14 16:40:18" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\ServiceReferences.ClientConfig" archivePath="ServiceReferences.ClientConfig" lastWriteTime="2015-06-05 21:38:00" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\BadgeLogo.png" archivePath="Assets\BadgeLogo.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\Logo.png" archivePath="Assets\Logo.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\SplashScreen.png" archivePath="Assets\SplashScreen.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\SquareTile150x150.png" archivePath="Assets\SquareTile150x150.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\SquareTile71x71.png" archivePath="Assets\SquareTile71x71.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\StoreLogo.png" archivePath="Assets\StoreLogo.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\WideLogo.png" archivePath="Assets\WideLogo.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\ARM\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="2015-06-06 01:06:41" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\ARM\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\ARM\Debug\testowa3.db" archivePath="testowa3.db" lastWriteTime="2015-04-10 00:23:35" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\ARM\Debug\testowa4.db" archivePath="testowa4.db" lastWriteTime="2015-06-06 01:20:52" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.1\Libraries\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="2014-04-18 05:36:48" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\DLL\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="2014-12-14 16:40:18" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll" archivePath="Newtonsoft.Json.dll" lastWriteTime="2015-02-12 23:01:22" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\packages\SQLite.Net-PCL.2.4.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll" archivePath="SQLite.Net.dll" lastWriteTime="2015-02-07 01:58:33" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\ARM\Sqlite.winmd" archivePath="Sqlite.winmd" lastWriteTime="2015-02-05 18:31:41" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\packages\WPControls.1.5.2\lib\wp8\WPControls.dll" archivePath="WPControls.dll" lastWriteTime="2015-01-14 22:08:51" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.xml" archivePath="Newtonsoft.Json.xml" lastWriteTime="2015-02-12 23:01:22" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\ARM\Sqlite.dll" archivePath="Sqlite.dll" lastWriteTime="2015-02-05 18:31:41" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\ExtensionSDKs\SQLite.WP80\3.11.1\Redist\Debug\ARM\sqlite3.dll" archivePath="sqlite3.dll" lastWriteTime="2016-03-08 07:08:51" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\ARM\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="2016-03-08 07:10:56" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\obj\ARM\Debug\MDILProjectFiles.xml" archivePath="MDILProjectFiles.xml" lastWriteTime="2016-03-08 07:27:00" />
+  <file source="E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\eRosja\Bin\ARM\Debug\AppxManifest.xml" archivePath="AppxManifest.xml" lastWriteTime="2016-03-08 07:26:59" />
+</xapCache>

@@ -1,0 +1,531 @@
+--
+-- Baza danych: e-rosja
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli alkohole
+--
+
+CREATE TABLE alkohole (
+  id_alkohole int NOT NULL IDENTITY(1,1),
+  nazwa varchar(50) NOT NULL
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli alkohol_ceny
+--
+
+CREATE TABLE alkohol_ceny (
+  id_alkohol_ceny int NOT NULL IDENTITY(1,1),
+  id_alkohole int NOT NULL,
+  id_przejscia int NOT NULL,
+  id_sklepy int NOT NULL,
+  cena decimal(10,0) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli cykl_zmian
+--
+
+CREATE TABLE cykl_zmian (
+  id_cykl_zmian int NOT NULL IDENTITY(1,1),
+  data_poczatkowa date DEFAULT NULL,
+  id_zmiany int NOT NULL
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli kantory
+--
+
+CREATE TABLE kantory (
+  id_kantory int NOT NULL IDENTITY(1,1),
+  nazwa varchar(50) NOT NULL
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli kursy
+--
+
+CREATE TABLE kursy (
+id_kursy int NOT NULL IDENTITY(1,1),
+  id_kantory int NOT NULL,
+  id_waluty int NOT NULL,
+  kurs numeric(10,3) NOT NULL,
+  data datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  aktualne int NOT NULL
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli paliwa
+--
+
+CREATE TABLE paliwa (
+id_paliwa int NOT NULL IDENTITY(1,1),
+  nazwa varchar(50) NOT NULL
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli paliwo_ceny
+--
+
+CREATE TABLE paliwo_ceny (
+id_paliwo_ceny int NOT NULL IDENTITY(1,1),
+  id_paliwa int NOT NULL,
+  id_stacje_benzynowe int NOT NULL,
+  cena decimal(10,2) NOT NULL
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli papierosy
+--
+
+CREATE TABLE papierosy (
+id_papierosy int NOT NULL IDENTITY(1,1),
+  nazwa varchar(50) NOT NULL
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli papierosy_ceny
+--
+
+CREATE TABLE papierosy_ceny (
+id_papierosy_ceny int NOT NULL IDENTITY(1,1),
+  id_papierosy int NOT NULL,
+  id_przejscia int NOT NULL,
+  id_sklepy int NOT NULL,
+  cena_paczka decimal(10,2) DEFAULT NULL,
+  cena_pakiet decimal(10,2) DEFAULT NULL
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli przejscia
+--
+
+CREATE TABLE przejscia (
+id_przejscia int NOT NULL IDENTITY(1,1),
+  nazwa varchar(25) NOT NULL
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli sklepy
+--
+
+CREATE TABLE sklepy (
+id_sklepy int NOT NULL IDENTITY(1,1),
+  id_przejscia int NOT NULL,
+  nazwa varchar(50) NOT NULL
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli stacje_benzynowe
+--
+
+CREATE TABLE stacje_benzynowe (
+id_stacje_benzynowe int NOT NULL IDENTITY(1,1),
+  id_przejscia int NOT NULL,
+  nazwa varchar(50) NOT NULL
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli uaktualnienia_alkohol
+--
+
+CREATE TABLE uaktualnienia_alkohol (
+id_uaktualnienia_alkohol int NOT NULL IDENTITY(1,1),
+  id_przejscia int NOT NULL,
+  id_alkohole int NOT NULL,
+  id_sklepy int NOT NULL,
+  id_uzytkownicy int NOT NULL,
+  cena decimal(10,0) NOT NULL,
+  data datetime NOT NULL,
+  zrealizowano int NOT NULL DEFAULT '0',
+  odrzucono int NOT NULL DEFAULT '0'
+);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli uaktualnienia_kursy
+--
+
+CREATE TABLE uaktualnienia_kursy (
+id_uaktualnienia_kursy int NOT NULL IDENTITY(1,1),
+  id_kantory int NOT NULL,
+  id_uzytkownicy int NOT NULL,
+  kurs numeric(10,3) NOT NULL,
+  data datetime NOT NULL,
+  zrealizowano int NOT NULL DEFAULT '0',
+  odrzucono int NOT NULL DEFAULT '0'
+);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli uaktualnienia_paliwo
+--
+
+CREATE TABLE uaktualnienia_paliwo (
+id_uaktualnienia_paliwo int NOT NULL IDENTITY(1,1),
+  id_przejscia int NOT NULL,
+  id_paliwa int NOT NULL,
+  id_stacje_benzynowe int NOT NULL,
+  id_uzytkownicy int NOT NULL,
+  cena decimal(10,0) NOT NULL,
+  data datetime NOT NULL,
+  zrealizowano int NOT NULL DEFAULT '0',
+  odrzucono int NOT NULL DEFAULT '0'
+);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli uaktualnienia_papierosy
+--
+
+CREATE TABLE uaktualnienia_papierosy (
+id_uaktualnienia_papierosy int NOT NULL IDENTITY(1,1),
+  id_przejscia int NOT NULL,
+  id_papierosy int NOT NULL,
+  id_sklepy int NOT NULL,
+  id_uzytkownicy int NOT NULL,
+  cena decimal(10,0) NOT NULL,
+  data datetime NOT NULL,
+  zrealizowano int NOT NULL DEFAULT '0',
+  odrzucono int NOT NULL DEFAULT '0'
+);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli uzytkownicy
+--
+
+CREATE TABLE uzytkownicy (
+  id_uzytkownicy int NOT NULL IDENTITY(1,1),
+  login varchar(50) NOT NULL UNIQUE,
+  haslo varchar(40) NOT NULL,
+  email varchar(50) NOT NULL,
+  zarejestrowano datetime NOT NULL,
+  ostatnie_logowanie datetime DEFAULT NULL,
+  status int NOT NULL DEFAULT '0'
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli waluty
+--
+
+CREATE TABLE waluty (
+id_waluty int NOT NULL IDENTITY(1,1),
+  nazwa varchar(45) NOT NULL
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli wyjazdy
+--
+
+CREATE TABLE wyjazdy (
+id_wyjazdy int NOT NULL IDENTITY(1,1),
+  id_uzytkownicy int NOT NULL,
+  id_przejscia int NOT NULL,
+  id_stacje_benzynowe int NOT NULL,
+  id_paliwa int NOT NULL,
+  ilosc_paliwa numeric(10,2) NOT NULL,
+  id_alkohole int DEFAULT NULL,
+  id_sklepy_alkohole int DEFAULT NULL,
+  ilosc_alkoholu numeric(10,1) DEFAULT NULL,
+  id_papierosy int DEFAULT NULL,
+  id_sklepy_papierosy int DEFAULT NULL,
+  ilosc_papierosow int DEFAULT NULL,
+  data datetime NOT NULL,
+  kanal int NOT NULL DEFAULT '0',
+  mandat int NOT NULL DEFAULT '0'
+);
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli zmiany
+--
+
+CREATE TABLE zmiany (
+id_zmiany int NOT NULL IDENTITY(1,1),
+  id_przejscia int NOT NULL,
+  nazwa varchar(30) NOT NULL
+);
+
+
+--
+-- Indeksy dla zrzutów tabel
+--
+
+--
+-- Indexes for table alkohole
+--
+ALTER TABLE alkohole
+ ADD PRIMARY KEY (id_alkohole);
+
+--
+-- Indexes for table alkohol_ceny
+--
+ALTER TABLE alkohol_ceny
+ ADD PRIMARY KEY (id_alkohol_ceny);
+
+--
+-- Indexes for table cykl_zmian
+--
+ALTER TABLE cykl_zmian
+ ADD PRIMARY KEY (id_cykl_zmian);
+
+--
+-- Indexes for table kantory
+--
+ALTER TABLE kantory
+ ADD PRIMARY KEY (id_kantory);
+
+--
+-- Indexes for table kursy
+--
+ALTER TABLE kursy
+ ADD PRIMARY KEY (id_kursy);
+
+--
+-- Indexes for table paliwa
+--
+ALTER TABLE paliwa
+ ADD PRIMARY KEY (id_paliwa);
+
+--
+-- Indexes for table paliwo_ceny
+--
+ALTER TABLE paliwo_ceny
+ ADD PRIMARY KEY (id_paliwo_ceny);
+
+--
+-- Indexes for table papierosy
+--
+ALTER TABLE papierosy
+ ADD PRIMARY KEY (id_papierosy);
+
+--
+-- Indexes for table papierosy_ceny
+--
+ALTER TABLE papierosy_ceny
+ ADD PRIMARY KEY (id_papierosy_ceny);
+
+--
+-- Indexes for table przejscia
+--
+ALTER TABLE przejscia
+ ADD PRIMARY KEY (id_przejscia);
+
+--
+-- Indexes for table sklepy
+--
+ALTER TABLE sklepy
+ ADD PRIMARY KEY (id_sklepy);
+
+--
+-- Indexes for table stacje_benzynowe
+--
+ALTER TABLE stacje_benzynowe
+ ADD PRIMARY KEY (id_stacje_benzynowe);
+
+--
+-- Indexes for table uaktualnienia_alkohol
+--
+ALTER TABLE uaktualnienia_alkohol
+ ADD PRIMARY KEY (id_uaktualnienia_alkohol);
+
+--
+-- Indexes for table uaktualnienia_kursy
+--
+ALTER TABLE uaktualnienia_kursy
+ ADD PRIMARY KEY (id_uaktualnienia_kursy);
+
+--
+-- Indexes for table uaktualnienia_paliwo
+--
+ALTER TABLE uaktualnienia_paliwo
+ ADD PRIMARY KEY (id_uaktualnienia_paliwo);
+
+--
+-- Indexes for table uaktualnienia_papierosy
+--
+ALTER TABLE uaktualnienia_papierosy
+ ADD PRIMARY KEY (id_uaktualnienia_papierosy);
+
+--
+-- Indexes for table uzytkownicy
+--
+ALTER TABLE uzytkownicy
+ ADD PRIMARY KEY (id_uzytkownicy);
+
+--
+-- Indexes for table waluty
+--
+ALTER TABLE waluty
+ ADD PRIMARY KEY (id_waluty);
+
+--
+-- Indexes for table wyjazdy
+--
+ALTER TABLE wyjazdy
+ ADD PRIMARY KEY (id_wyjazdy);
+
+--
+-- Indexes for table zmiany
+--
+ALTER TABLE zmiany
+ ADD PRIMARY KEY (id_zmiany);
+
+
+--
+-- Ograniczenia dla zrzutów tabel
+--
+
+--
+-- Ograniczenia dla tabeli alkohol_ceny
+--
+ALTER TABLE alkohol_ceny
+ADD CONSTRAINT fk_alkohol_ceny__alkohole FOREIGN KEY (id_alkohole) REFERENCES alkohole (id_alkohole) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_alkohol_ceny__przejscia FOREIGN KEY (id_przejscia) REFERENCES przejscia (id_przejscia),
+CONSTRAINT fk_alkohol_ceny__sklepy FOREIGN KEY (id_sklepy) REFERENCES sklepy (id_sklepy) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli cykl_zmian
+--
+ALTER TABLE cykl_zmian
+ADD CONSTRAINT id_cykl_zmian__zmiany FOREIGN KEY (id_zmiany) REFERENCES zmiany (id_zmiany) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli kursy
+--
+ALTER TABLE kursy
+ADD CONSTRAINT fk_kursy__kantory FOREIGN KEY (id_kantory) REFERENCES kantory (id_kantory) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_kursy__waluty FOREIGN KEY (id_waluty) REFERENCES waluty (id_waluty) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Ograniczenia dla tabeli paliwo_ceny
+--
+ALTER TABLE paliwo_ceny
+ADD CONSTRAINT fk_paliwo_ceny__paliwa FOREIGN KEY (id_paliwa) REFERENCES paliwa (id_paliwa) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_paliwo_ceny__stacje_benzynowe FOREIGN KEY (id_stacje_benzynowe) REFERENCES stacje_benzynowe (id_stacje_benzynowe) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli papierosy_ceny
+--
+ALTER TABLE papierosy_ceny
+ADD CONSTRAINT fk_papierosy_ceny__papierosy FOREIGN KEY (id_papierosy) REFERENCES papierosy (id_papierosy) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_papierosy_ceny__przejscia FOREIGN KEY (id_przejscia) REFERENCES przejscia (id_przejscia),
+CONSTRAINT fk_papierosy_ceny__sklepy FOREIGN KEY (id_sklepy) REFERENCES sklepy (id_sklepy) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli sklepy
+--
+ALTER TABLE sklepy
+ADD CONSTRAINT fk_sklepy__przejscia FOREIGN KEY (id_przejscia) REFERENCES przejscia (id_przejscia) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli stacje_benzynowe
+--
+ALTER TABLE stacje_benzynowe
+ADD CONSTRAINT fk_stacje_benzynowe__przejscia FOREIGN KEY (id_przejscia) REFERENCES przejscia (id_przejscia) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli uaktualnienia_alkohol
+--
+ALTER TABLE uaktualnienia_alkohol
+ADD CONSTRAINT fk_uaktualnienia_alkohol__alkohole FOREIGN KEY (id_alkohole) REFERENCES alkohole (id_alkohole) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_uaktualnienia_alkohol__przejscia FOREIGN KEY (id_przejscia) REFERENCES przejscia (id_przejscia),
+CONSTRAINT fk_uaktualnienia_alkohol__sklepy FOREIGN KEY (id_sklepy) REFERENCES sklepy (id_sklepy) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_uaktualnienia_alkohol__uzytkownicy FOREIGN KEY (id_uzytkownicy) REFERENCES uzytkownicy (id_uzytkownicy) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli uaktualnienia_kursy
+--
+ALTER TABLE uaktualnienia_kursy
+ADD CONSTRAINT fk_uaktualnienia_kursy__kantory FOREIGN KEY (id_kantory) REFERENCES kantory (id_kantory) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_uaktualnienia_kursy__uzytkownicy FOREIGN KEY (id_uzytkownicy) REFERENCES uzytkownicy (id_uzytkownicy) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli uaktualnienia_paliwo
+--
+ALTER TABLE uaktualnienia_paliwo
+ADD CONSTRAINT fk_uaktualnienia_paliwo__paliwa FOREIGN KEY (id_paliwa) REFERENCES paliwa (id_paliwa) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_uaktualnienia_paliwo__przejscia FOREIGN KEY (id_przejscia) REFERENCES przejscia (id_przejscia),
+CONSTRAINT fk_uaktualnienia_paliwo__stacje_benzynowe FOREIGN KEY (id_stacje_benzynowe) REFERENCES stacje_benzynowe (id_stacje_benzynowe) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_uaktualnienia_paliwo__uzytkownicy FOREIGN KEY (id_uzytkownicy) REFERENCES uzytkownicy (id_uzytkownicy) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli uaktualnienia_papierosy
+--
+ALTER TABLE uaktualnienia_papierosy
+ADD CONSTRAINT fk_uaktualnienia_papierosy__papierosy FOREIGN KEY (id_papierosy) REFERENCES papierosy (id_papierosy) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_uaktualnienia_papierosy__przejscia FOREIGN KEY (id_przejscia) REFERENCES przejscia (id_przejscia),
+CONSTRAINT fk_uaktualnienia_papierosy__sklepy FOREIGN KEY (id_sklepy) REFERENCES sklepy (id_sklepy) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_uaktualnienia_papierosy__uzytkownicy FOREIGN KEY (id_uzytkownicy) REFERENCES uzytkownicy (id_uzytkownicy) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli wyjazdy
+--
+ALTER TABLE wyjazdy
+ADD CONSTRAINT fk_wyjazdy__alkohole FOREIGN KEY (id_alkohole) REFERENCES alkohole (id_alkohole) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_wyjazdy__paliwa FOREIGN KEY (id_paliwa) REFERENCES paliwa (id_paliwa) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_wyjazdy__papierosy FOREIGN KEY (id_papierosy) REFERENCES papierosy (id_papierosy) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_wyjazdy__przejscia FOREIGN KEY (id_przejscia) REFERENCES przejscia (id_przejscia),
+CONSTRAINT fk_wyjazdy__sklepy_alkohole FOREIGN KEY (id_sklepy_alkohole) REFERENCES sklepy (id_sklepy) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_wyjazdy__sklepy_papierosy FOREIGN KEY (id_sklepy_papierosy) REFERENCES sklepy (id_sklepy) ON DELETE NO ACTION ON UPDATE NO ACTION,
+CONSTRAINT fk_wyjazdy__stacje_benzynowe FOREIGN KEY (id_stacje_benzynowe) REFERENCES stacje_benzynowe (id_stacje_benzynowe) ON DELETE NO ACTION ON UPDATE NO ACTION,
+CONSTRAINT fk_wyjazdy__uzytkownicy FOREIGN KEY (id_uzytkownicy) REFERENCES uzytkownicy (id_uzytkownicy) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ograniczenia dla tabeli zmiany
+--
+ALTER TABLE zmiany
+ADD CONSTRAINT fk_zmiany__przejscia FOREIGN KEY (id_przejscia) REFERENCES przejscia (id_przejscia) ON DELETE CASCADE ON UPDATE CASCADE;
+

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.1.20/WCFeRosja/CenyMiejscaService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://192.168.1.20/WCFeRosja/CenyMiejscaService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCFeRosja" />
+  <xs:element name="PobierzPrzejscia">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzPrzejsciaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PobierzPrzejsciaResult" nillable="true" type="q1:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzStacjeBenzynowe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nazwaPrzejscia" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzStacjeBenzynoweResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PobierzStacjeBenzynoweResult" nillable="true" type="q2:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzNazwyPaliw">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzNazwyPaliwResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PobierzNazwyPaliwResult" nillable="true" type="q3:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzCenyPaliw">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nazwaPrzejscia" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nazwaStacji" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzCenyPaliwResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PobierzCenyPaliwResult" nillable="true" type="q4:ArrayOfKeyValueOflongdecimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzCenePaliwa">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nazwaPrzejscia" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nazwaStacji" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="rodzajPaliwa" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzCenePaliwaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PobierzCenePaliwaResult" type="xs:decimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzSklepy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nazwaPrzejscia" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzSklepyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PobierzSklepyResult" nillable="true" type="q5:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzKursRubla">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzKursRublaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PobierzKursRublaResult" nillable="true" type="q6:ArrayOfKeyValueOfdateTimedouble" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzKursEuro">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzKursEuroResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PobierzKursEuroResult" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzPapierosy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nazwaPrzejscia" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nazwaSklepu" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzPapierosyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCFeRosja" minOccurs="0" name="PobierzPapierosyResult" nillable="true" type="q7:ArrayOfPapierosyCeny" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzAlkohole">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nazwaPrzejscia" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nazwaSklepu" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzAlkoholeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCFeRosja" minOccurs="0" name="PobierzAlkoholeResult" nillable="true" type="q8:ArrayOfAlkohol" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzDostepnePaliwa">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nazwaPrzejscia" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nazwaStacji" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzDostepnePaliwaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PobierzDostepnePaliwaResult" nillable="true" type="q9:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

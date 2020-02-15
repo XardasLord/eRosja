@@ -1,0 +1,34 @@
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\WCFeRosja\bin\WCFeRosja.dll.config
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\WCFeRosja\bin\WCFeRosja.dll
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\WCFeRosja\bin\WCFeRosja.pdb
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\WCFeRosja\bin\EntityFramework.dll
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\WCFeRosja\bin\EntityFramework.SqlServer.dll
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\WCFeRosja\bin\MySql.Data.dll
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\WCFeRosja\bin\MySql.Data.Entity.EF6.dll
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\WCFeRosja\bin\EntityFramework.xml
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\WCFeRosja\bin\EntityFramework.SqlServer.xml
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\WCFeRosja\obj\Debug\WCFeRosja.dll
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\WCFeRosja\obj\Debug\WCFeRosja.pdb
+C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\WCFeRosja\obj\Debug\WCFeRosja.csprojResolveAssemblyReference.cache
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\WCFeRosja.dll.config
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\WCFeRosja.dll
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\WCFeRosja.pdb
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\EntityFramework.dll
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\EntityFramework.SqlServer.dll
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\MySql.Data.dll
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\MySql.Data.Entity.EF6.dll
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\EntityFramework.xml
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\EntityFramework.SqlServer.xml
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\obj\Debug\WCFeRosja.dll
+D:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\obj\Debug\WCFeRosja.pdb
+E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\WCFeRosja.dll.config
+E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\WCFeRosja.dll
+E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\WCFeRosja.pdb
+E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\EntityFramework.dll
+E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\EntityFramework.SqlServer.dll
+E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\MySql.Data.dll
+E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\EntityFramework.xml
+E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\bin\EntityFramework.SqlServer.xml
+E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\obj\Debug\WCFeRosja.csprojResolveAssemblyReference.cache
+E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\obj\Debug\WCFeRosja.dll
+E:\Paweł\!!! Programowanie\Aplikacje\Mobilne\eRosja\WCFeRosja\WCFeRosja\obj\Debug\WCFeRosja.pdb

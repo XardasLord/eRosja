@@ -1,0 +1,24 @@
+﻿using Sqlite;
+using System;
+using System.Collections.Generic;
+using System.Data.Linq;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace eRosja
+{
+    public class kursy
+    {
+        [SQLite.PrimaryKey, SQLite.AutoIncrement]
+        public int id_kursy { get; set; }
+        public int id_kantory { get; set; }
+        public int id_waluty { get; set; }
+        public decimal kurs { get; set; }
+        public System.DateTime data { get; set; }
+        public int aktualne { get; set; }
+
+        public virtual kantory kantory { get; set; }
+        public virtual Waluty waluty { get; set; }
+    }
+}

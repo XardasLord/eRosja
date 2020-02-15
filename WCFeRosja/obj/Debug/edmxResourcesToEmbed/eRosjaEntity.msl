@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="eRosjaEntities">
+    <EntitySetMapping Name="alkohol_ceny1">
+      <EntityTypeMapping TypeName="Model.alkohol_ceny">
+        <MappingFragment StoreEntitySet="alkohol_ceny">
+          <ScalarProperty Name="cena" ColumnName="cena" />
+          <ScalarProperty Name="id_sklepy" ColumnName="id_sklepy" />
+          <ScalarProperty Name="id_przejscia" ColumnName="id_przejscia" />
+          <ScalarProperty Name="id_alkohole" ColumnName="id_alkohole" />
+          <ScalarProperty Name="id_alkohol_ceny" ColumnName="id_alkohol_ceny" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="alkohole1">
+      <EntityTypeMapping TypeName="Model.alkohole">
+        <MappingFragment StoreEntitySet="alkohole">
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="id_alkohole" ColumnName="id_alkohole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cykl_zmian1">
+      <EntityTypeMapping TypeName="Model.cykl_zmian">
+        <MappingFragment StoreEntitySet="cykl_zmian">
+          <ScalarProperty Name="id_zmiany" ColumnName="id_zmiany" />
+          <ScalarProperty Name="data_poczatkowa" ColumnName="data_poczatkowa" />
+          <ScalarProperty Name="id_cykl_zmian" ColumnName="id_cykl_zmian" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kantory1">
+      <EntityTypeMapping TypeName="Model.kantory">
+        <MappingFragment StoreEntitySet="kantory">
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="id_kantory" ColumnName="id_kantory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kursy1">
+      <EntityTypeMapping TypeName="Model.kursy">
+        <MappingFragment StoreEntitySet="kursy">
+          <ScalarProperty Name="aktualne" ColumnName="aktualne" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="kurs" ColumnName="kurs" />
+          <ScalarProperty Name="id_waluty" ColumnName="id_waluty" />
+          <ScalarProperty Name="id_kantory" ColumnName="id_kantory" />
+          <ScalarProperty Name="id_kursy" ColumnName="id_kursy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paliwa1">
+      <EntityTypeMapping TypeName="Model.paliwa">
+        <MappingFragment StoreEntitySet="paliwa">
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="id_paliwa" ColumnName="id_paliwa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paliwo_ceny1">
+      <EntityTypeMapping TypeName="Model.paliwo_ceny">
+        <MappingFragment StoreEntitySet="paliwo_ceny">
+          <ScalarProperty Name="cena" ColumnName="cena" />
+          <ScalarProperty Name="id_stacje_benzynowe" ColumnName="id_stacje_benzynowe" />
+          <ScalarProperty Name="id_paliwa" ColumnName="id_paliwa" />
+          <ScalarProperty Name="id_paliwo_ceny" ColumnName="id_paliwo_ceny" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="papierosy1">
+      <EntityTypeMapping TypeName="Model.papierosy">
+        <MappingFragment StoreEntitySet="papierosy">
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="id_papierosy" ColumnName="id_papierosy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="papierosy_ceny1">
+      <EntityTypeMapping TypeName="Model.papierosy_ceny">
+        <MappingFragment StoreEntitySet="papierosy_ceny">
+          <ScalarProperty Name="cena_pakiet" ColumnName="cena_pakiet" />
+          <ScalarProperty Name="cena_paczka" ColumnName="cena_paczka" />
+          <ScalarProperty Name="id_sklepy" ColumnName="id_sklepy" />
+          <ScalarProperty Name="id_przejscia" ColumnName="id_przejscia" />
+          <ScalarProperty Name="id_papierosy" ColumnName="id_papierosy" />
+          <ScalarProperty Name="id_papierosy_ceny" ColumnName="id_papierosy_ceny" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="przejscia1">
+      <EntityTypeMapping TypeName="Model.przejscia">
+        <MappingFragment StoreEntitySet="przejscia">
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="id_przejscia" ColumnName="id_przejscia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sklepy1">
+      <EntityTypeMapping TypeName="Model.sklepy">
+        <MappingFragment StoreEntitySet="sklepy">
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="id_przejscia" ColumnName="id_przejscia" />
+          <ScalarProperty Name="id_sklepy" ColumnName="id_sklepy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stacje_benzynowe1">
+      <EntityTypeMapping TypeName="Model.stacje_benzynowe">
+        <MappingFragment StoreEntitySet="stacje_benzynowe">
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="id_przejscia" ColumnName="id_przejscia" />
+          <ScalarProperty Name="id_stacje_benzynowe" ColumnName="id_stacje_benzynowe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="uzytkownicy1">
+      <EntityTypeMapping TypeName="Model.uzytkownicy">
+        <MappingFragment StoreEntitySet="uzytkownicy">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="ostatnie_logowanie" ColumnName="ostatnie_logowanie" />
+          <ScalarProperty Name="zarejestrowano" ColumnName="zarejestrowano" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="haslo" ColumnName="haslo" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="id_uzytkownicy" ColumnName="id_uzytkownicy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="waluty1">
+      <EntityTypeMapping TypeName="Model.waluty">
+        <MappingFragment StoreEntitySet="waluty">
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="id_waluty" ColumnName="id_waluty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="wyjazdy1">
+      <EntityTypeMapping TypeName="Model.wyjazdy">
+        <MappingFragment StoreEntitySet="wyjazdy">
+          <ScalarProperty Name="mandat" ColumnName="mandat" />
+          <ScalarProperty Name="kanal" ColumnName="kanal" />
+          <ScalarProperty Name="godzina" ColumnName="godzina" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="ilosc_papierosow" ColumnName="ilosc_papierosow" />
+          <ScalarProperty Name="id_sklepy_papierosy" ColumnName="id_sklepy_papierosy" />
+          <ScalarProperty Name="id_papierosy" ColumnName="id_papierosy" />
+          <ScalarProperty Name="ilosc_alkoholu" ColumnName="ilosc_alkoholu" />
+          <ScalarProperty Name="id_sklepy_alkohole" ColumnName="id_sklepy_alkohole" />
+          <ScalarProperty Name="id_alkohole" ColumnName="id_alkohole" />
+          <ScalarProperty Name="ilosc_paliwa" ColumnName="ilosc_paliwa" />
+          <ScalarProperty Name="id_paliwa" ColumnName="id_paliwa" />
+          <ScalarProperty Name="id_stacje_benzynowe" ColumnName="id_stacje_benzynowe" />
+          <ScalarProperty Name="id_przejscia" ColumnName="id_przejscia" />
+          <ScalarProperty Name="id_uzytkownicy" ColumnName="id_uzytkownicy" />
+          <ScalarProperty Name="id_wyjazdy" ColumnName="id_wyjazdy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zmiany1">
+      <EntityTypeMapping TypeName="Model.zmiany">
+        <MappingFragment StoreEntitySet="zmiany">
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="id_przejscia" ColumnName="id_przejscia" />
+          <ScalarProperty Name="id_zmiany" ColumnName="id_zmiany" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

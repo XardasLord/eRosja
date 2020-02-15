@@ -1,0 +1,797 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="alkohol_ceny">
+          <Key>
+            <PropertyRef Name="id_alkohol_ceny" />
+          </Key>
+          <Property Name="id_alkohol_ceny" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_alkohole" Type="uint" Nullable="false" />
+          <Property Name="id_przejscia" Type="uint" Nullable="false" />
+          <Property Name="id_sklepy" Type="uint" Nullable="false" />
+          <Property Name="cena" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="alkohole">
+          <Key>
+            <PropertyRef Name="id_alkohole" />
+          </Key>
+          <Property Name="id_alkohole" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kantory">
+          <Key>
+            <PropertyRef Name="id_kantory" />
+          </Key>
+          <Property Name="id_kantory" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kursy">
+          <Key>
+            <PropertyRef Name="id_kursy" />
+          </Key>
+          <Property Name="id_kursy" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_kantory" Type="uint" Nullable="false" />
+          <Property Name="kurs" Type="double" Nullable="false" />
+          <Property Name="data" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aktualne" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="paliwa">
+          <Key>
+            <PropertyRef Name="id_paliwa" />
+          </Key>
+          <Property Name="id_paliwa" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="paliwo_ceny">
+          <Key>
+            <PropertyRef Name="id_paliwo_ceny" />
+          </Key>
+          <Property Name="id_paliwo_ceny" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_paliwa" Type="uint" Nullable="false" />
+          <Property Name="id_stacje_benzynowe" Type="uint" Nullable="false" />
+          <Property Name="cena" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="papierosy">
+          <Key>
+            <PropertyRef Name="id_papierosy" />
+          </Key>
+          <Property Name="id_papierosy" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="papierosy_ceny">
+          <Key>
+            <PropertyRef Name="id_papierosy_ceny" />
+          </Key>
+          <Property Name="id_papierosy_ceny" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_papierosy" Type="uint" Nullable="false" />
+          <Property Name="id_przejscia" Type="uint" Nullable="false" />
+          <Property Name="id_sklepy" Type="uint" Nullable="false" />
+          <Property Name="cena" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="przejscia">
+          <Key>
+            <PropertyRef Name="id_przejscia" />
+          </Key>
+          <Property Name="id_przejscia" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sklepy">
+          <Key>
+            <PropertyRef Name="id_sklepy" />
+          </Key>
+          <Property Name="id_sklepy" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_przejscia" Type="uint" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stacje_benzynowe">
+          <Key>
+            <PropertyRef Name="id_stacje_benzynowe" />
+          </Key>
+          <Property Name="id_stacje_benzynowe" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_przejscia" Type="uint" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uzytkownicy">
+          <Key>
+            <PropertyRef Name="id_uzytkownicy" />
+          </Key>
+          <Property Name="id_uzytkownicy" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="haslo" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="zarejestrowano" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="ostatnie_logowanie" Type="datetime" Precision="0" />
+          <Property Name="status" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_alkohol_ceny__alkohole">
+          <End Role="alkohole" Type="Self.alkohole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="alkohol_ceny" Type="Self.alkohol_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alkohole">
+              <PropertyRef Name="id_alkohole" />
+            </Principal>
+            <Dependent Role="alkohol_ceny">
+              <PropertyRef Name="id_alkohole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_alkohol_ceny__przejscia">
+          <End Role="przejscia" Type="Self.przejscia" Multiplicity="1" />
+          <End Role="alkohol_ceny" Type="Self.alkohol_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przejscia">
+              <PropertyRef Name="id_przejscia" />
+            </Principal>
+            <Dependent Role="alkohol_ceny">
+              <PropertyRef Name="id_przejscia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_alkohol_ceny__sklepy">
+          <End Role="sklepy" Type="Self.sklepy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="alkohol_ceny" Type="Self.alkohol_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sklepy">
+              <PropertyRef Name="id_sklepy" />
+            </Principal>
+            <Dependent Role="alkohol_ceny">
+              <PropertyRef Name="id_sklepy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_kursy__kantory">
+          <End Role="kantory" Type="Self.kantory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="kursy" Type="Self.kursy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kantory">
+              <PropertyRef Name="id_kantory" />
+            </Principal>
+            <Dependent Role="kursy">
+              <PropertyRef Name="id_kantory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_paliwo_ceny__paliwa">
+          <End Role="paliwa" Type="Self.paliwa" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="paliwo_ceny" Type="Self.paliwo_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paliwa">
+              <PropertyRef Name="id_paliwa" />
+            </Principal>
+            <Dependent Role="paliwo_ceny">
+              <PropertyRef Name="id_paliwa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_paliwo_ceny__stacje_benzynowe">
+          <End Role="stacje_benzynowe" Type="Self.stacje_benzynowe" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="paliwo_ceny" Type="Self.paliwo_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stacje_benzynowe">
+              <PropertyRef Name="id_stacje_benzynowe" />
+            </Principal>
+            <Dependent Role="paliwo_ceny">
+              <PropertyRef Name="id_stacje_benzynowe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_papierosy_ceny__papierosy">
+          <End Role="papierosy" Type="Self.papierosy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="papierosy_ceny" Type="Self.papierosy_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="papierosy">
+              <PropertyRef Name="id_papierosy" />
+            </Principal>
+            <Dependent Role="papierosy_ceny">
+              <PropertyRef Name="id_papierosy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_papierosy_ceny__przejscia">
+          <End Role="przejscia" Type="Self.przejscia" Multiplicity="1" />
+          <End Role="papierosy_ceny" Type="Self.papierosy_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przejscia">
+              <PropertyRef Name="id_przejscia" />
+            </Principal>
+            <Dependent Role="papierosy_ceny">
+              <PropertyRef Name="id_przejscia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_papierosy_ceny__sklepy">
+          <End Role="sklepy" Type="Self.sklepy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="papierosy_ceny" Type="Self.papierosy_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sklepy">
+              <PropertyRef Name="id_sklepy" />
+            </Principal>
+            <Dependent Role="papierosy_ceny">
+              <PropertyRef Name="id_sklepy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_sklepy__przejscia">
+          <End Role="przejscia" Type="Self.przejscia" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="sklepy" Type="Self.sklepy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przejscia">
+              <PropertyRef Name="id_przejscia" />
+            </Principal>
+            <Dependent Role="sklepy">
+              <PropertyRef Name="id_przejscia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_stacje_benzynowe__przejscia">
+          <End Role="przejscia" Type="Self.przejscia" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="stacje_benzynowe" Type="Self.stacje_benzynowe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przejscia">
+              <PropertyRef Name="id_przejscia" />
+            </Principal>
+            <Dependent Role="stacje_benzynowe">
+              <PropertyRef Name="id_przejscia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="alkohol_ceny" EntityType="Self.alkohol_ceny" Schema="e-rosja" store:Type="Tables" />
+          <EntitySet Name="alkohole" EntityType="Self.alkohole" Schema="e-rosja" store:Type="Tables" />
+          <EntitySet Name="kantory" EntityType="Self.kantory" Schema="e-rosja" store:Type="Tables" />
+          <EntitySet Name="kursy" EntityType="Self.kursy" Schema="e-rosja" store:Type="Tables" />
+          <EntitySet Name="paliwa" EntityType="Self.paliwa" Schema="e-rosja" store:Type="Tables" />
+          <EntitySet Name="paliwo_ceny" EntityType="Self.paliwo_ceny" Schema="e-rosja" store:Type="Tables" />
+          <EntitySet Name="papierosy" EntityType="Self.papierosy" Schema="e-rosja" store:Type="Tables" />
+          <EntitySet Name="papierosy_ceny" EntityType="Self.papierosy_ceny" Schema="e-rosja" store:Type="Tables" />
+          <EntitySet Name="przejscia" EntityType="Self.przejscia" Schema="e-rosja" store:Type="Tables" />
+          <EntitySet Name="sklepy" EntityType="Self.sklepy" Schema="e-rosja" store:Type="Tables" />
+          <EntitySet Name="stacje_benzynowe" EntityType="Self.stacje_benzynowe" Schema="e-rosja" store:Type="Tables" />
+          <EntitySet Name="uzytkownicy" EntityType="Self.uzytkownicy" Schema="e-rosja" store:Type="Tables" />
+          <AssociationSet Name="fk_alkohol_ceny__alkohole" Association="Self.fk_alkohol_ceny__alkohole">
+            <End Role="alkohole" EntitySet="alkohole" />
+            <End Role="alkohol_ceny" EntitySet="alkohol_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_alkohol_ceny__przejscia" Association="Self.fk_alkohol_ceny__przejscia">
+            <End Role="przejscia" EntitySet="przejscia" />
+            <End Role="alkohol_ceny" EntitySet="alkohol_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_alkohol_ceny__sklepy" Association="Self.fk_alkohol_ceny__sklepy">
+            <End Role="sklepy" EntitySet="sklepy" />
+            <End Role="alkohol_ceny" EntitySet="alkohol_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_kursy__kantory" Association="Self.fk_kursy__kantory">
+            <End Role="kantory" EntitySet="kantory" />
+            <End Role="kursy" EntitySet="kursy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_paliwo_ceny__paliwa" Association="Self.fk_paliwo_ceny__paliwa">
+            <End Role="paliwa" EntitySet="paliwa" />
+            <End Role="paliwo_ceny" EntitySet="paliwo_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_paliwo_ceny__stacje_benzynowe" Association="Self.fk_paliwo_ceny__stacje_benzynowe">
+            <End Role="stacje_benzynowe" EntitySet="stacje_benzynowe" />
+            <End Role="paliwo_ceny" EntitySet="paliwo_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_papierosy_ceny__papierosy" Association="Self.fk_papierosy_ceny__papierosy">
+            <End Role="papierosy" EntitySet="papierosy" />
+            <End Role="papierosy_ceny" EntitySet="papierosy_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_papierosy_ceny__przejscia" Association="Self.fk_papierosy_ceny__przejscia">
+            <End Role="przejscia" EntitySet="przejscia" />
+            <End Role="papierosy_ceny" EntitySet="papierosy_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_papierosy_ceny__sklepy" Association="Self.fk_papierosy_ceny__sklepy">
+            <End Role="sklepy" EntitySet="sklepy" />
+            <End Role="papierosy_ceny" EntitySet="papierosy_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_sklepy__przejscia" Association="Self.fk_sklepy__przejscia">
+            <End Role="przejscia" EntitySet="przejscia" />
+            <End Role="sklepy" EntitySet="sklepy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_stacje_benzynowe__przejscia" Association="Self.fk_stacje_benzynowe__przejscia">
+            <End Role="przejscia" EntitySet="przejscia" />
+            <End Role="stacje_benzynowe" EntitySet="stacje_benzynowe" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="eRosjaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="uzytkownicy" EntityType="Model.UzytkownicyEntity" />
+          <EntitySet Name="przejscia" EntityType="Model.PrzejsciaEntity" />
+          <EntitySet Name="stacje_benzynowe" EntityType="Model.Stacje_benzynoweEntity" />
+          <AssociationSet Name="fk_stacje_benzynowe__przejscia" Association="Model.fk_stacje_benzynowe__przejscia">
+            <End Role="przejscia" EntitySet="przejscia" />
+            <End Role="stacje_benzynowe" EntitySet="stacje_benzynowe" />
+          </AssociationSet>
+          <EntitySet Name="paliwa" EntityType="Model.PaliwaEntity" />
+          <EntitySet Name="paliwo_ceny" EntityType="Model.Paliwo_cenyEntity" />
+          <AssociationSet Name="fk_paliwo_ceny__paliwa" Association="Model.fk_paliwo_ceny__paliwa">
+            <End Role="paliwa" EntitySet="paliwa" />
+            <End Role="paliwo_ceny" EntitySet="paliwo_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_paliwo_ceny__stacje_benzynowe" Association="Model.fk_paliwo_ceny__stacje_benzynowe">
+            <End Role="Stacje_benzynoweEntity" EntitySet="stacje_benzynowe" />
+            <End Role="paliwo_ceny" EntitySet="paliwo_ceny" />
+          </AssociationSet>
+          <EntitySet Name="sklepy" EntityType="Model.SklepyEntity" />
+          <AssociationSet Name="fk_sklepy__przejscia" Association="Model.fk_sklepy__przejscia">
+            <End Role="PrzejsciaEntity" EntitySet="przejscia" />
+            <End Role="sklepy" EntitySet="sklepy" />
+          </AssociationSet>
+          <EntitySet Name="kantory" EntityType="Model.KantoryEntity" />
+          <EntitySet Name="kursy" EntityType="Model.KursyEntity" />
+          <AssociationSet Name="fk_kursy__kantory" Association="Model.fk_kursy__kantory">
+            <End Role="KantoryEntity" EntitySet="kantory" />
+            <End Role="kursy" EntitySet="kursy" />
+          </AssociationSet>
+          <EntitySet Name="papierosy" EntityType="Model.PapierosyEntity" />
+          <EntitySet Name="papierosy_ceny" EntityType="Model.Papierosy_cenyEntity" />
+          <AssociationSet Name="fk_papierosy_ceny__papierosy" Association="Model.fk_papierosy_ceny__papierosy">
+            <End Role="PapierosyEntity" EntitySet="papierosy" />
+            <End Role="papierosy_ceny" EntitySet="papierosy_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_papierosy_ceny__przejscia" Association="Model.fk_papierosy_ceny__przejscia">
+            <End Role="PrzejsciaEntity" EntitySet="przejscia" />
+            <End Role="papierosy_ceny" EntitySet="papierosy_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_papierosy_ceny__sklepy" Association="Model.fk_papierosy_ceny__sklepy">
+            <End Role="SklepyEntity" EntitySet="sklepy" />
+            <End Role="papierosy_ceny" EntitySet="papierosy_ceny" />
+          </AssociationSet>
+          <EntitySet Name="alkohol_ceny" EntityType="Model.Alkohol_cenyEntity" />
+          <EntitySet Name="alkohole" EntityType="Model.AlkoholeEntity" />
+          <AssociationSet Name="fk_alkohol_ceny__alkohole" Association="Model.fk_alkohol_ceny__alkohole">
+            <End Role="alkohole" EntitySet="alkohole" />
+            <End Role="alkohol_ceny" EntitySet="alkohol_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_alkohol_ceny__przejscia" Association="Model.fk_alkohol_ceny__przejscia">
+            <End Role="PrzejsciaEntity" EntitySet="przejscia" />
+            <End Role="alkohol_ceny" EntitySet="alkohol_ceny" />
+          </AssociationSet>
+          <AssociationSet Name="fk_alkohol_ceny__sklepy" Association="Model.fk_alkohol_ceny__sklepy">
+            <End Role="SklepyEntity" EntitySet="sklepy" />
+            <End Role="alkohol_ceny" EntitySet="alkohol_ceny" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="UzytkownicyEntity">
+          <Key>
+            <PropertyRef Name="id_uzytkownicy" />
+          </Key>
+          <Property Name="id_uzytkownicy" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="haslo" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="zarejestrowano" Type="DateTime" Nullable="false" />
+          <Property Name="ostatnie_logowanie" Type="DateTime" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrzejsciaEntity">
+          <Key>
+            <PropertyRef Name="id_przejscia" />
+          </Key>
+          <Property Name="id_przejscia" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="stacje_benzynowe" Relationship="Model.fk_stacje_benzynowe__przejscia" FromRole="przejscia" ToRole="stacje_benzynowe" />
+          <NavigationProperty Name="sklepy" Relationship="Model.fk_sklepy__przejscia" FromRole="PrzejsciaEntity" ToRole="sklepy" />
+          <NavigationProperty Name="papierosy_ceny" Relationship="Model.fk_papierosy_ceny__przejscia" FromRole="PrzejsciaEntity" ToRole="papierosy_ceny" />
+          <NavigationProperty Name="alkohol_ceny" Relationship="Model.fk_alkohol_ceny__przejscia" FromRole="PrzejsciaEntity" ToRole="alkohol_ceny" />
+        </EntityType>
+        <EntityType Name="Stacje_benzynoweEntity">
+          <Key>
+            <PropertyRef Name="id_stacje_benzynowe" />
+          </Key>
+          <Property Name="id_stacje_benzynowe" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_przejscia" Type="Int64" Nullable="false" />
+          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="przejscia" Relationship="Model.fk_stacje_benzynowe__przejscia" FromRole="stacje_benzynowe" ToRole="przejscia" />
+          <NavigationProperty Name="paliwo_ceny" Relationship="Model.fk_paliwo_ceny__stacje_benzynowe" FromRole="Stacje_benzynoweEntity" ToRole="paliwo_ceny" />
+        </EntityType>
+        <Association Name="fk_stacje_benzynowe__przejscia">
+          <End Type="Model.PrzejsciaEntity" Role="przejscia" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Stacje_benzynoweEntity" Role="stacje_benzynowe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przejscia">
+              <PropertyRef Name="id_przejscia" />
+            </Principal>
+            <Dependent Role="stacje_benzynowe">
+              <PropertyRef Name="id_przejscia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PaliwaEntity">
+          <Key>
+            <PropertyRef Name="id_paliwa" />
+          </Key>
+          <Property Name="id_paliwa" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="paliwo_ceny" Relationship="Model.fk_paliwo_ceny__paliwa" FromRole="paliwa" ToRole="paliwo_ceny" />
+        </EntityType>
+        <EntityType Name="Paliwo_cenyEntity">
+          <Key>
+            <PropertyRef Name="id_paliwo_ceny" />
+          </Key>
+          <Property Name="id_paliwo_ceny" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_paliwa" Type="Int64" Nullable="false" />
+          <Property Name="id_stacje_benzynowe" Type="Int64" Nullable="false" />
+          <Property Name="cena" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="paliwa" Relationship="Model.fk_paliwo_ceny__paliwa" FromRole="paliwo_ceny" ToRole="paliwa" />
+          <NavigationProperty Name="stacje_benzynowe" Relationship="Model.fk_paliwo_ceny__stacje_benzynowe" FromRole="paliwo_ceny" ToRole="Stacje_benzynoweEntity" />
+        </EntityType>
+        <Association Name="fk_paliwo_ceny__paliwa">
+          <End Type="Model.PaliwaEntity" Role="paliwa" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Paliwo_cenyEntity" Role="paliwo_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paliwa">
+              <PropertyRef Name="id_paliwa" />
+            </Principal>
+            <Dependent Role="paliwo_ceny">
+              <PropertyRef Name="id_paliwa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_paliwo_ceny__stacje_benzynowe">
+          <End Type="Model.Stacje_benzynoweEntity" Role="Stacje_benzynoweEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Paliwo_cenyEntity" Role="paliwo_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stacje_benzynoweEntity">
+              <PropertyRef Name="id_stacje_benzynowe" />
+            </Principal>
+            <Dependent Role="paliwo_ceny">
+              <PropertyRef Name="id_stacje_benzynowe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SklepyEntity">
+          <Key>
+            <PropertyRef Name="id_sklepy" />
+          </Key>
+          <Property Name="id_sklepy" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_przejscia" Type="Int64" Nullable="false" />
+          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="przejscia" Relationship="Model.fk_sklepy__przejscia" FromRole="sklepy" ToRole="PrzejsciaEntity" />
+          <NavigationProperty Name="papierosy_ceny" Relationship="Model.fk_papierosy_ceny__sklepy" FromRole="SklepyEntity" ToRole="papierosy_ceny" />
+          <NavigationProperty Name="alkohol_ceny" Relationship="Model.fk_alkohol_ceny__sklepy" FromRole="SklepyEntity" ToRole="alkohol_ceny" />
+        </EntityType>
+        <Association Name="fk_sklepy__przejscia">
+          <End Type="Model.PrzejsciaEntity" Role="PrzejsciaEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.SklepyEntity" Role="sklepy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrzejsciaEntity">
+              <PropertyRef Name="id_przejscia" />
+            </Principal>
+            <Dependent Role="sklepy">
+              <PropertyRef Name="id_przejscia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="KantoryEntity">
+          <Key>
+            <PropertyRef Name="id_kantory" />
+          </Key>
+          <Property Name="id_kantory" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="kursy" Relationship="Model.fk_kursy__kantory" FromRole="KantoryEntity" ToRole="kursy" />
+        </EntityType>
+        <EntityType Name="KursyEntity">
+          <Key>
+            <PropertyRef Name="id_kursy" />
+          </Key>
+          <Property Name="id_kursy" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_kantory" Type="Int64" Nullable="false" />
+          <Property Name="kurs" Type="Double" Nullable="false" />
+          <Property Name="data" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aktualne" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="kantory" Relationship="Model.fk_kursy__kantory" FromRole="kursy" ToRole="KantoryEntity" />
+        </EntityType>
+        <Association Name="fk_kursy__kantory">
+          <End Type="Model.KantoryEntity" Role="KantoryEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.KursyEntity" Role="kursy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KantoryEntity">
+              <PropertyRef Name="id_kantory" />
+            </Principal>
+            <Dependent Role="kursy">
+              <PropertyRef Name="id_kantory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PapierosyEntity">
+          <Key>
+            <PropertyRef Name="id_papierosy" />
+          </Key>
+          <Property Name="id_papierosy" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="papierosy_ceny" Relationship="Model.fk_papierosy_ceny__papierosy" FromRole="PapierosyEntity" ToRole="papierosy_ceny" />
+        </EntityType>
+        <EntityType Name="Papierosy_cenyEntity">
+          <Key>
+            <PropertyRef Name="id_papierosy_ceny" />
+          </Key>
+          <Property Name="id_papierosy_ceny" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_papierosy" Type="Int64" Nullable="false" />
+          <Property Name="id_przejscia" Type="Int64" Nullable="false" />
+          <Property Name="id_sklepy" Type="Int64" Nullable="false" />
+          <Property Name="cena" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="papierosy" Relationship="Model.fk_papierosy_ceny__papierosy" FromRole="papierosy_ceny" ToRole="PapierosyEntity" />
+          <NavigationProperty Name="przejscia" Relationship="Model.fk_papierosy_ceny__przejscia" FromRole="papierosy_ceny" ToRole="PrzejsciaEntity" />
+          <NavigationProperty Name="sklepy" Relationship="Model.fk_papierosy_ceny__sklepy" FromRole="papierosy_ceny" ToRole="SklepyEntity" />
+        </EntityType>
+        <Association Name="fk_papierosy_ceny__papierosy">
+          <End Type="Model.PapierosyEntity" Role="PapierosyEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Papierosy_cenyEntity" Role="papierosy_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PapierosyEntity">
+              <PropertyRef Name="id_papierosy" />
+            </Principal>
+            <Dependent Role="papierosy_ceny">
+              <PropertyRef Name="id_papierosy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_papierosy_ceny__przejscia">
+          <End Type="Model.PrzejsciaEntity" Role="PrzejsciaEntity" Multiplicity="1" />
+          <End Type="Model.Papierosy_cenyEntity" Role="papierosy_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrzejsciaEntity">
+              <PropertyRef Name="id_przejscia" />
+            </Principal>
+            <Dependent Role="papierosy_ceny">
+              <PropertyRef Name="id_przejscia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_papierosy_ceny__sklepy">
+          <End Type="Model.SklepyEntity" Role="SklepyEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Papierosy_cenyEntity" Role="papierosy_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SklepyEntity">
+              <PropertyRef Name="id_sklepy" />
+            </Principal>
+            <Dependent Role="papierosy_ceny">
+              <PropertyRef Name="id_sklepy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Alkohol_cenyEntity">
+          <Key>
+            <PropertyRef Name="id_alkohol_ceny" />
+          </Key>
+          <Property Name="id_alkohol_ceny" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_alkohole" Type="Int64" Nullable="false" />
+          <Property Name="id_przejscia" Type="Int64" Nullable="false" />
+          <Property Name="id_sklepy" Type="Int64" Nullable="false" />
+          <Property Name="cena" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="alkohole" Relationship="Model.fk_alkohol_ceny__alkohole" FromRole="alkohol_ceny" ToRole="alkohole" />
+          <NavigationProperty Name="przejscia" Relationship="Model.fk_alkohol_ceny__przejscia" FromRole="alkohol_ceny" ToRole="PrzejsciaEntity" />
+          <NavigationProperty Name="sklepy" Relationship="Model.fk_alkohol_ceny__sklepy" FromRole="alkohol_ceny" ToRole="SklepyEntity" />
+        </EntityType>
+        <EntityType Name="AlkoholeEntity">
+          <Key>
+            <PropertyRef Name="id_alkohole" />
+          </Key>
+          <Property Name="id_alkohole" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="alkohol_ceny" Relationship="Model.fk_alkohol_ceny__alkohole" FromRole="alkohole" ToRole="alkohol_ceny" />
+        </EntityType>
+        <Association Name="fk_alkohol_ceny__alkohole">
+          <End Type="Model.AlkoholeEntity" Role="alkohole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Alkohol_cenyEntity" Role="alkohol_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alkohole">
+              <PropertyRef Name="id_alkohole" />
+            </Principal>
+            <Dependent Role="alkohol_ceny">
+              <PropertyRef Name="id_alkohole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_alkohol_ceny__przejscia">
+          <End Type="Model.PrzejsciaEntity" Role="PrzejsciaEntity" Multiplicity="1" />
+          <End Type="Model.Alkohol_cenyEntity" Role="alkohol_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrzejsciaEntity">
+              <PropertyRef Name="id_przejscia" />
+            </Principal>
+            <Dependent Role="alkohol_ceny">
+              <PropertyRef Name="id_przejscia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_alkohol_ceny__sklepy">
+          <End Type="Model.SklepyEntity" Role="SklepyEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Alkohol_cenyEntity" Role="alkohol_ceny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SklepyEntity">
+              <PropertyRef Name="id_sklepy" />
+            </Principal>
+            <Dependent Role="alkohol_ceny">
+              <PropertyRef Name="id_sklepy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="eRosjaEntities">
+          <EntitySetMapping Name="uzytkownicy">
+            <EntityTypeMapping TypeName="Model.UzytkownicyEntity">
+              <MappingFragment StoreEntitySet="uzytkownicy">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="ostatnie_logowanie" ColumnName="ostatnie_logowanie" />
+                <ScalarProperty Name="zarejestrowano" ColumnName="zarejestrowano" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="haslo" ColumnName="haslo" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="id_uzytkownicy" ColumnName="id_uzytkownicy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="przejscia">
+            <EntityTypeMapping TypeName="Model.PrzejsciaEntity">
+              <MappingFragment StoreEntitySet="przejscia">
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="id_przejscia" ColumnName="id_przejscia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stacje_benzynowe">
+            <EntityTypeMapping TypeName="Model.Stacje_benzynoweEntity">
+              <MappingFragment StoreEntitySet="stacje_benzynowe">
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="id_przejscia" ColumnName="id_przejscia" />
+                <ScalarProperty Name="id_stacje_benzynowe" ColumnName="id_stacje_benzynowe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paliwa">
+            <EntityTypeMapping TypeName="Model.PaliwaEntity">
+              <MappingFragment StoreEntitySet="paliwa">
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="id_paliwa" ColumnName="id_paliwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paliwo_ceny">
+            <EntityTypeMapping TypeName="Model.Paliwo_cenyEntity">
+              <MappingFragment StoreEntitySet="paliwo_ceny">
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="id_stacje_benzynowe" ColumnName="id_stacje_benzynowe" />
+                <ScalarProperty Name="id_paliwa" ColumnName="id_paliwa" />
+                <ScalarProperty Name="id_paliwo_ceny" ColumnName="id_paliwo_ceny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sklepy">
+            <EntityTypeMapping TypeName="Model.SklepyEntity">
+              <MappingFragment StoreEntitySet="sklepy">
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="id_przejscia" ColumnName="id_przejscia" />
+                <ScalarProperty Name="id_sklepy" ColumnName="id_sklepy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kantory">
+            <EntityTypeMapping TypeName="Model.KantoryEntity">
+              <MappingFragment StoreEntitySet="kantory">
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="id_kantory" ColumnName="id_kantory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kursy">
+            <EntityTypeMapping TypeName="Model.KursyEntity">
+              <MappingFragment StoreEntitySet="kursy">
+                <ScalarProperty Name="aktualne" ColumnName="aktualne" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="kurs" ColumnName="kurs" />
+                <ScalarProperty Name="id_kantory" ColumnName="id_kantory" />
+                <ScalarProperty Name="id_kursy" ColumnName="id_kursy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="papierosy">
+            <EntityTypeMapping TypeName="Model.PapierosyEntity">
+              <MappingFragment StoreEntitySet="papierosy">
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="id_papierosy" ColumnName="id_papierosy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="papierosy_ceny">
+            <EntityTypeMapping TypeName="Model.Papierosy_cenyEntity">
+              <MappingFragment StoreEntitySet="papierosy_ceny">
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="id_sklepy" ColumnName="id_sklepy" />
+                <ScalarProperty Name="id_przejscia" ColumnName="id_przejscia" />
+                <ScalarProperty Name="id_papierosy" ColumnName="id_papierosy" />
+                <ScalarProperty Name="id_papierosy_ceny" ColumnName="id_papierosy_ceny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alkohol_ceny">
+            <EntityTypeMapping TypeName="Model.Alkohol_cenyEntity">
+              <MappingFragment StoreEntitySet="alkohol_ceny">
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="id_sklepy" ColumnName="id_sklepy" />
+                <ScalarProperty Name="id_przejscia" ColumnName="id_przejscia" />
+                <ScalarProperty Name="id_alkohole" ColumnName="id_alkohole" />
+                <ScalarProperty Name="id_alkohol_ceny" ColumnName="id_alkohol_ceny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alkohole">
+            <EntityTypeMapping TypeName="Model.AlkoholeEntity">
+              <MappingFragment StoreEntitySet="alkohole">
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="id_alkohole" ColumnName="id_alkohole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace WCFeRosja
+{
+    public class Papierosy
+    {
+        public string SklepPapierosy { get; set; }
+        public string NazwaPapierosow { get; set; }
+        public int IloscPapierosow { get; set; }
+    }
+}

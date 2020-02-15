@@ -1,0 +1,30 @@
+e-Rosja
+
+
+Za³o¿enia:
+
+- aplikacja mobilna pod system Windows Phone 8.1
+- skierowana dla osób je¿d¿¹cych do Rosji
+- aplikacja desktopowa do zarz¹dzania uaktualnieniami
+
+
+Technologia wykonania:
+
+- jêzyk programowania C#
+- œrodowisko programistyczne Visual Studio Express 2013 for Windows (Windows Phone SDK 8.1)
+- baza danych MySQL na zewnêtrznym hostingu
+
+
+Funkcjonalnoœæ:
+
+- Rejestracja
+- Logowanie
+- Sprawdzanie cen paliwa, papierosów, alkoholu, itd.
+- Mo¿liwoœæ uaktualnienia cen (zg³oszenie wysy³ane do apki desktopowej)
+- Sprawdzenie kursu rubla
+- Mo¿liwoœæ uaktualnienia kursu rubla (zg³oszenie wysy³ane do apki desktopowej)
+- Sprawdzenie kto ma zmianê
+-*Dodanie odbytego wyjazdu (data, godzina, iloœæ paliwa, alkoholu, papierosów, kana³, wpadka)
+- Sprawdzenie nastêpnego wyjazdu (72h)
+- Sprawdzenie kosztu wyjazdu
+- Statystyki (tyg, m-c, rocznie, wszystko) - towary, kana³y, jaka zmiana najczêœciej

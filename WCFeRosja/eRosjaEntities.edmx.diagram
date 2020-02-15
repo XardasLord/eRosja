@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="53b8a90d9aca4323a5e91359e10e8c99" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Alkohole_cenyEntity" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AlkoholeEntity" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Cykl_zmianEntity" Width="1.5" PointX="5.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.KantoryEntity" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.KursyEntity" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PaliwaEntity" Width="1.5" PointX="6" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Paliwo_cenyEntity" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PapierosyEntity" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Papierosy_cenyEntity" Width="1.5" PointX="8.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PrzejsciaEntity" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SklepyEntity" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Stacje_benzynoweEntity" Width="1.5" PointX="3" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.UzytkownicyEntity" Width="1.5" PointX="6" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WalutyEntity" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ZmianyEntity" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.fk_alkohol_ceny__alkohole" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_alkohol_ceny__przejscia" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_alkohol_ceny__sklepy" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.id_cykl_zmian__zmiany" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_kursy__kantory" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_kursy__waluty" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_paliwo_ceny__paliwa" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_paliwo_ceny__stacje_benzynowe" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_papierosy_ceny__papierosy" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_papierosy_ceny__przejscia" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_papierosy_ceny__sklepy" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_sklepy__przejscia" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_stacje_benzynowe__przejscia" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.fk_zmiany__przejscia" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.WyjazdyEntity" Width="1.5" PointX="8.25" PointY="15.625" />
+        <AssociationConnector Association="Model.fk_wyjazdy__alkohole" />
+        <AssociationConnector Association="Model.fk_wyjazdy__paliwa" />
+        <AssociationConnector Association="Model.fk_wyjazdy__papierosy" />
+        <AssociationConnector Association="Model.fk_wyjazdy__przejscia" />
+        <AssociationConnector Association="Model.fk_wyjazdy__sklepy_alkohole" />
+        <AssociationConnector Association="Model.fk_wyjazdy__sklepy_papierosy" />
+        <AssociationConnector Association="Model.fk_wyjazdy__stacje_benzynowe" />
+        <AssociationConnector Association="Model.fk_wyjazdy__uzytkownicy" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

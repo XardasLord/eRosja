@@ -1,0 +1,30 @@
+﻿<xapCache source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\eRosja_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="2014-12-18 22:10:13">
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\resources.pri" archivePath="resources.pri" lastWriteTime="2014-12-17 00:12:38" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\eRosja.dll" archivePath="eRosja.dll" lastWriteTime="2014-12-18 22:10:12" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Toolkit.Content\ApplicationBar.Add.png" archivePath="Toolkit.Content\ApplicationBar.Add.png" lastWriteTime="2014-12-14 16:40:18" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Toolkit.Content\ApplicationBar.Cancel.png" archivePath="Toolkit.Content\ApplicationBar.Cancel.png" lastWriteTime="2014-12-14 16:40:18" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Toolkit.Content\ApplicationBar.Check.png" archivePath="Toolkit.Content\ApplicationBar.Check.png" lastWriteTime="2014-12-14 16:40:18" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Toolkit.Content\ApplicationBar.Delete.png" archivePath="Toolkit.Content\ApplicationBar.Delete.png" lastWriteTime="2014-12-14 16:40:18" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Toolkit.Content\ApplicationBar.Select.png" archivePath="Toolkit.Content\ApplicationBar.Select.png" lastWriteTime="2014-12-14 16:40:18" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\ServiceReferences.ClientConfig" archivePath="ServiceReferences.ClientConfig" lastWriteTime="2014-12-15 18:35:32" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Assets\BadgeLogo.png" archivePath="Assets\BadgeLogo.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Assets\Logo.png" archivePath="Assets\Logo.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Assets\SplashScreen.png" archivePath="Assets\SplashScreen.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Assets\SquareTile150x150.png" archivePath="Assets\SquareTile150x150.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Assets\SquareTile71x71.png" archivePath="Assets\SquareTile71x71.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Assets\StoreLogo.png" archivePath="Assets\StoreLogo.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Assets\WideLogo.png" archivePath="Assets\WideLogo.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="2014-12-16 15:21:28" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="2014-12-04 23:50:46" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.1\Libraries\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="2014-10-16 07:23:12" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\DLL\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="2014-12-14 16:40:18" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="2014-12-16 15:21:28" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\obj\Debug\MDILProjectFiles.xml" archivePath="MDILProjectFiles.xml" lastWriteTime="2014-12-18 22:10:13" />
+  <file source="C:\Users\Paweł\documents\visual studio 2013\Projects\WCFeRosja\eRosja\Bin\Debug\AppxManifest.xml" archivePath="AppxManifest.xml" lastWriteTime="2014-12-17 00:12:39" />
+</xapCache>

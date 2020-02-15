@@ -1,0 +1,374 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using SQLite;
+using System.Collections.ObjectModel;
+using eRosja.CenyMiejscaService;
+
+namespace eRosja.SQLiteDB
+{
+    class CenyMiejscaSQLite
+    {
+
+
+        public Dictionary<DateTime, decimal> PobierzKursRubla(string DB_PATH)
+        {
+            var kursRubla = new Dictionary<DateTime, decimal>();
+
+
+            using(SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                var waluty = conn.Table<waluty>().Where(w => w.nazwa.Equals("RUB")).FirstOrDefault();
+                kursRubla = conn.Table<kursy>().Where(k => k.id_waluty == waluty.id_waluty).ToDictionary(k => k.data, k => k.kurs);
+            }
+  
+
+            return kursRubla;
+        }
+
+
+
+        public decimal PobierzKursEuro(string DB_PATH)
+        {
+            decimal kurs;
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                var waluty = conn.Table<waluty>().Where(w => w.nazwa.Equals("EUR")).First();
+                var kursy = conn.Table<kursy>().Where(k => k.id_waluty == waluty.id_waluty).First();
+                kurs = kursy.kurs;
+            }
+
+            return kurs;
+        }
+
+
+
+
+        public List<string> PobierzPrzejscia(string DB_PATH)
+        {
+            var listaPrzejsc = new List<string>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                var przejscia = conn.Table<przejscia>().ToList();
+
+                foreach(var nazwaPrzejscia in przejscia)
+                {
+                    listaPrzejsc.Add(nazwaPrzejscia.nazwa);
+                }
+            }
+
+            return listaPrzejsc;
+        }
+
+
+
+
+        public List<string> PobierzStacjeBenzynowe(string DB_PATH, string nazwaPrzejscia)
+        {
+            var listaStacji = new List<string>();
+
+            
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                // Pobranie ID przejścia
+                var przejscia = conn.Table<przejscia>().Where(p => p.nazwa.Equals(nazwaPrzejscia)).First();
+                var stacje = conn.Table<stacje_benzynowe>().Where(s => s.id_przejscia == przejscia.id_przejscia).ToList();
+
+                foreach(var nazwaStacji in stacje)
+                {
+                    listaStacji.Add(nazwaStacji.nazwa);
+                }
+                
+            }
+
+            return listaStacji;
+        }
+
+
+
+
+        public List<string> PobierzDostepnePaliwa(string DB_PATH, string nazwaPrzejscia, string nazwaStacji)
+        {
+            List<string> dostepnePaliwa = new List<string>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                var przejscia = conn.Table<przejscia>().Where(p => p.nazwa.Equals(nazwaPrzejscia)).First();
+                var stacje = conn.Table<stacje_benzynowe>().Where(s=>s.nazwa.Equals(nazwaStacji) && s.id_przejscia == przejscia.id_przejscia).First();
+                var paliwoCeny = conn.Table<paliwo_ceny>().Where(p => p.id_stacje_benzynowe == stacje.id_stacje_benzynowe).ToList();
+                
+
+                foreach(var paliwa in paliwoCeny)
+                {
+                    var nazwyPaliw = conn.Table<paliwa>().Where(p => p.id_paliwa == paliwa.id_paliwa).First();
+                    dostepnePaliwa.Add(nazwyPaliw.nazwa);
+                }
+            }
+
+            return dostepnePaliwa;
+        }
+
+
+
+
+        public List<string> PobierzNazwyPaliw(string DB_PATH)
+        {
+            List<String> listaPaliw = new List<string>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                var paliwa = conn.Table<paliwa>().ToList();
+
+                foreach(var nazwyPaliw in paliwa)
+                {
+                    listaPaliw.Add(nazwyPaliw.nazwa);
+                }
+            }
+
+            return listaPaliw;
+        }
+
+
+
+        public Dictionary<long, decimal> PobierzCenyPaliw(string DB_PATH, string nazwaPrzejscia, string nazwaStacji)
+        {
+            // Pobranie cen paliw dla wybranej stacji benzynowej
+            var cenyPaliw = new Dictionary<long, decimal>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                // Pobranie ID przejścia
+                var przejscia = conn.Table<przejscia>().Where(p => p.nazwa.Equals(nazwaPrzejscia)).First();
+                // Pobranie ID stacji
+                var stacje = conn.Table<stacje_benzynowe>().Where(s => s.id_przejscia == przejscia.id_przejscia && s.nazwa.Equals(nazwaStacji)).First();
+
+                // klucz - Id_paliwa
+                // wartość - cena
+                cenyPaliw = conn.Table<paliwo_ceny>().Where(p => p.id_stacje_benzynowe == stacje.id_stacje_benzynowe).ToDictionary(c => c.id_paliwa, c => c.cena);
+            }
+
+            return cenyPaliw;
+        }
+
+
+
+
+
+        public decimal PobierzCenePaliwa(string DB_PATH, string nazwaPrzejscia, string nazwaStacji, string rodzajPaliwa)
+        {
+            // Pobranie konkretnej ceny paliwa dla konkretnego rodzaju benzyny
+            decimal cena;
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                // Pobranie ID przejścia
+                var przejscia = conn.Table<przejscia>().Where(p => p.nazwa.Equals(nazwaPrzejscia)).First();
+                // Pobranie ID stacji
+                var stacje = conn.Table<stacje_benzynowe>().Where(s => s.id_przejscia == przejscia.id_przejscia && s.nazwa.Equals(nazwaStacji)).First();
+                // Pobranie ID paliwa
+                var paliwa = conn.Table<paliwa>().Where(p => p.nazwa.Equals(rodzajPaliwa)).First();
+                // Pobranie ID paliwo_ceny
+                var paliwoCeny = conn.Table<paliwo_ceny>().Where(p => p.id_stacje_benzynowe == stacje.id_stacje_benzynowe && p.id_paliwa == paliwa.id_paliwa).First();
+
+                cena = paliwoCeny.cena;
+            }
+
+            return cena;
+        }
+
+
+
+
+
+        public List<string> PobierzSklepy(string DB_PATH, string nazwaPrzejscia)
+        {
+            List<string> listaSklepow = new List<string>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                // Pobranie ID przejścia
+                var przejscia = conn.Table<przejscia>().Where(p => p.nazwa.Equals(nazwaPrzejscia)).First();
+                // Pobranie ID sklepu
+                var sklepy = conn.Table<sklepy>().Where(s => s.id_przejscia == przejscia.id_przejscia).ToList();
+
+                foreach(var nazwySklepow in sklepy)
+                {
+                    listaSklepow.Add(nazwySklepow.nazwa);
+                }
+            }
+
+            return listaSklepow;
+        }
+
+
+
+
+        public List<PapierosyCeny> PobierzPapierosy(string DB_PATH, string nazwaPrzejscia, string nazwaSklepu)
+        {
+            List<PapierosyCeny> listaPapierosow = new List<PapierosyCeny>();
+            List<papierosy_ceny> listaPapierosowEntity = new List<papierosy_ceny>();
+
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                // Pobranie ID przejścia
+                var przejscia = conn.Table<przejscia>().Where(p => p.nazwa.Equals(nazwaPrzejscia)).First();
+                // Pobranie ID sklepu
+                var sklepy = conn.Table<sklepy>().Where(s => s.id_przejscia == przejscia.id_przejscia && s.nazwa.Equals(nazwaSklepu)).First();
+
+                listaPapierosowEntity = conn.Table<papierosy_ceny>().Where(p => p.id_przejscia == przejscia.id_przejscia && p.id_sklepy == sklepy.id_sklepy).ToList();
+            }
+
+            // Przekształca listę pobraną bezpośrednio z bazy na listę nazw (zamiast ID) dla klienta
+            listaPapierosow = PrzetworzListePapierosowDlaKlienta(DB_PATH, listaPapierosowEntity);
+
+
+            return listaPapierosow;
+        }
+
+
+
+
+        private List<PapierosyCeny> PrzetworzListePapierosowDlaKlienta(string DB_PATH, List<papierosy_ceny> listaPapierosowEntity)
+        {
+            List<PapierosyCeny> listaPapierosow = new List<PapierosyCeny>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                // Przejście przez każdy z wyjazdów
+                for (int i = 0; i < listaPapierosowEntity.Count; i++)
+                {
+                    PapierosyCeny papierosy = new PapierosyCeny();
+                    papierosy_ceny papierosyEntity = new papierosy_ceny();
+
+                    papierosyEntity = listaPapierosowEntity[i];
+
+
+                    // Zamiana każdego z papierosów na papierosy dla klienta
+                    // ID - NAZWY
+                    var przejscia = conn.Table<przejscia>().Where(p => p.id_przejscia == papierosyEntity.id_przejscia).First();
+                    papierosy.Przejscie = przejscia.nazwa;
+
+                    var sklepy = conn.Table<sklepy>().Where(s => s.id_sklepy == papierosyEntity.id_sklepy).First();
+                    papierosy.Sklep = sklepy.nazwa;
+
+                    var papierosy2 = conn.Table<papierosy>().Where(p => p.id_papierosy == papierosyEntity.id_papierosy).First();
+                    papierosy.Nazwa = papierosy2.nazwa;
+
+                    var papierosyCeny = conn.Table<papierosy_ceny>().Where(p => p.id_papierosy_ceny == papierosyEntity.id_papierosy_ceny).First();
+                    papierosy.CenaPaczka = papierosyCeny.cena_paczka;
+                    papierosy.CenaPakiet = papierosyCeny.cena_pakiet;
+
+                    listaPapierosow.Add(papierosy);
+                }
+            }
+
+            return listaPapierosow;
+        }
+
+
+
+
+
+
+        public List<Alkohol> PobierzAlkohole(string DB_PATH, string nazwaPrzejscia, string nazwaSklepu)
+        {
+            List<Alkohol> listaAlkoholi = new List<Alkohol>();
+            List<alkohol_ceny> listaAlkoholiEntity = new List<alkohol_ceny>();
+
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                // Pobranie ID przejścia
+                var przejscia = conn.Table<przejscia>().Where(p => p.nazwa.Equals(nazwaPrzejscia)).First();
+                // Pobranie ID sklepu
+                var sklepy = conn.Table<sklepy>().Where(s => s.id_przejscia == przejscia.id_przejscia && s.nazwa.Equals(nazwaSklepu)).First();
+
+                listaAlkoholiEntity = conn.Table<alkohol_ceny>().Where(a => a.id_przejscia == przejscia.id_przejscia && a.id_sklepy == sklepy.id_sklepy).ToList();
+            }
+
+
+            // Przekształca listę pobraną bezpośrednio z bazy na listę nazw (zamiast ID) dla klienta
+            listaAlkoholi = PrzetworzListeAlkoholiDlaKlienta(DB_PATH, listaAlkoholiEntity);
+
+
+            return listaAlkoholi;
+        }
+
+
+
+
+        private List<Alkohol> PrzetworzListeAlkoholiDlaKlienta(string DB_PATH, List<alkohol_ceny> listaAlkoholiEntity)
+        {
+            List<Alkohol> listaAlkoholi = new List<Alkohol>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                // Przejście przez każdy z wyjazdów
+                for (int i = 0; i < listaAlkoholiEntity.Count; i++)
+                {
+                    Alkohol alkohol = new Alkohol();
+                    alkohol_ceny alkoholEntity = new alkohol_ceny();
+
+                    alkoholEntity = listaAlkoholiEntity[i];
+
+
+                    // Zamiana każdego z alkoholi na alkohole dla klienta
+                    // ID - NAZWY
+                    var przejscia = conn.Table<przejscia>().Where(p => p.id_przejscia == alkoholEntity.id_przejscia).First();
+                    alkohol.Przejscie = przejscia.nazwa;
+
+                    var sklepy = conn.Table<sklepy>().Where(s => s.id_sklepy == alkoholEntity.id_sklepy).First();
+                    alkohol.Sklep = sklepy.nazwa;
+
+                    var alkohole = conn.Table<alkohole>().Where(a => a.id_alkohole == alkoholEntity.id_alkohole).First();
+                    alkohol.Nazwa = alkohole.nazwa;
+
+                    var papierosyCeny = conn.Table<alkohol_ceny>().Where(a => a.id_alkohol_ceny == alkoholEntity.id_alkohol_ceny).First();
+                    alkohol.Cena = papierosyCeny.cena;
+
+
+                    listaAlkoholi.Add(alkohol);
+                }
+            }
+
+            return listaAlkoholi;
+
+        }
+
+
+
+
+        public void UaktualnijKursRubla(string DB_PATH, Dictionary<DateTime, decimal> kursAktualny, Dictionary<DateTime, decimal> kursStary)
+        {
+            decimal kursStaryRubel = 0;
+            decimal kursAktualnyRubel = 0;
+            DateTime kursAktualnyData = DateTime.Now;
+
+            foreach (decimal rubel in kursStary.Values)
+                kursStaryRubel = rubel;
+
+            foreach (decimal rubel in kursAktualny.Values)
+                kursAktualnyRubel = rubel;
+
+            foreach (DateTime data in kursAktualny.Keys)
+                kursAktualnyData = data;
+
+
+            using (SQLiteConnection conn = new SQLiteConnection(DB_PATH))
+            {
+                var query = conn.Table<kursy>().Where(k => k.kurs == kursStaryRubel).SingleOrDefault();
+                query.data = kursAktualnyData;
+                query.kurs = kursAktualnyRubel;
+
+                conn.Update(query);
+            }
+            
+        }
+
+    }
+}

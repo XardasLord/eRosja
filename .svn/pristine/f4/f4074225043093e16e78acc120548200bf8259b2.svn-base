@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WCFeRosja
+{
+    public class Wyjazd
+    {
+        public string LoginUzytkownika { get; set; }
+        public string Przejscie { get; set; }
+        public string Stacja { get; set; }
+        public string Paliwo { get; set; }
+        public double IloscPaliwa { get; set; }
+        public string SklepPapierosy { get; set; }
+        public string Papierosy { get; set; }
+        public string IloscPapierosow { get; set; }
+        public string SklepAlkohol { get; set; }
+        public string Alkohol { get; set; }
+
+    }
+}

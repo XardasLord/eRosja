@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+  <appSettings />
+  <!--
+    For a description of web.config changes see http://go.microsoft.com/fwlink/?LinkId=235367.
+
+    The following attributes can be set on the <httpRuntime> tag.
+      <system.Web>
+        <httpRuntime targetFramework="4.5" />
+      </system.Web>
+  -->
+  <system.web>
+    <compilation debug="true" targetFramework="4.5" />
+    <httpRuntime />
+    <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID" />
+  </system.web>
+  <system.serviceModel>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="debug">
+          <serviceMetadata httpGetEnabled="true" httpsGetEnabled="true" />
+          <serviceDebug includeExceptionDetailInFaults="true" />
+        </behavior>
+        <behavior name="">
+          <serviceMetadata httpGetEnabled="true" httpsGetEnabled="true" />
+          <serviceDebug includeExceptionDetailInFaults="false" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <services>
+      <service name="WCFeRosja.UzytkownikService" behaviorConfiguration="debug" />
+      <service name="WCFeRosja.CenyMiejscaService" behaviorConfiguration="debug" />
+      <service name="WCFeRosja.WyjazdService" behaviorConfiguration="debug" />
+      <service name="WCFeRosja.ZmianyService" behaviorConfiguration="debug" />
+    </services>
+    <protocolMapping>
+      <add binding="basicHttpsBinding" scheme="https" />
+    </protocolMapping>
+    <serviceHostingEnvironment aspNetCompatibilityEnabled="false" multipleSiteBindingsEnabled="true" />
+  </system.serviceModel>
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true" />
+    <!--
+        To browse web app root directory during debugging, set the value below to true.
+        Set to false before deployment to avoid disclosing web app folder information.
+      -->
+    <directoryBrowse enabled="true" />
+  </system.webServer>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="mssqllocaldb" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <!-- <provider invariantName="MySql.Data.MySqlClient" type="MySql.Data.MySqlClient.MySqlProviderServices, MySql.Data.Entity.EF6" /> MySQL-->
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+  <connectionStrings>
+    <!-- <add name="eRosjaEntities" connectionString="metadata=res://*/eRosjaEntity.csdl|res://*/eRosjaEntity.ssdl|res://*/eRosjaEntity.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=XARDASLORD\SQLEXPRESS;initial catalog=e-rosja;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" /> -->
+
+    <!-- <add name="DbSimple" providerName="System.Data.SqlClient" connectionString="Data Source=XARDASLORD\SQLEXPRESS;Initial Catalog=e-rosja;Integrated Security=True" /> -->
+    
+    <!-- <add name="eRosjaEntities" connectionString="metadata=res://*/eRosjaEntities.csdl|res://*/eRosjaEntities.ssdl|res://*/eRosjaEntities.msl;
+         provider=System.Data.SqlClient;
+         provider connection string=&quot;data source=XARDASLORD\SQLEXPRESS;initial catalog=e-rosja;integrated security=True;multipleactiveresultsets=True;application 
+         name=EntityFramework&quot;" 
+         providerName="System.Data.EntityClient" /> -->
+    
+  <add name="eRosjaEntities" connectionString="metadata=res://*/eRosjaEntities.csdl|res://*/eRosjaEntities.ssdl|res://*/eRosjaEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=XARDASLORD\SQLEXPRESS;initial catalog=e-rosja;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" /></connectionStrings>
+</configuration>

@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFeRosja", "WCFeRosja\WCFeRosja.csproj", "{A4EF573D-A671-4173-968A-E5C1A9070517}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eRosja", "eRosja\eRosja.csproj", "{6FBCA5D6-0B94-4599-BECA-6345F581FA24}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A4EF573D-A671-4173-968A-E5C1A9070517} = {A4EF573D-A671-4173-968A-E5C1A9070517}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4EF573D-A671-4173-968A-E5C1A9070517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4EF573D-A671-4173-968A-E5C1A9070517}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4EF573D-A671-4173-968A-E5C1A9070517}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A4EF573D-A671-4173-968A-E5C1A9070517}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A4EF573D-A671-4173-968A-E5C1A9070517}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4EF573D-A671-4173-968A-E5C1A9070517}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4EF573D-A671-4173-968A-E5C1A9070517}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A4EF573D-A671-4173-968A-E5C1A9070517}.Release|x86.ActiveCfg = Release|Any CPU
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Debug|Any CPU.ActiveCfg = Debug|ARM
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Debug|Any CPU.Build.0 = Debug|ARM
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Debug|Any CPU.Deploy.0 = Debug|ARM
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Debug|ARM.ActiveCfg = Debug|ARM
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Debug|ARM.Build.0 = Debug|ARM
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Debug|ARM.Deploy.0 = Debug|ARM
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Debug|x86.ActiveCfg = Debug|x86
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Debug|x86.Build.0 = Debug|x86
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Debug|x86.Deploy.0 = Debug|x86
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Release|ARM.ActiveCfg = Release|ARM
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Release|ARM.Build.0 = Release|ARM
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Release|ARM.Deploy.0 = Release|ARM
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Release|x86.ActiveCfg = Release|x86
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Release|x86.Build.0 = Release|x86
+		{6FBCA5D6-0B94-4599-BECA-6345F581FA24}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

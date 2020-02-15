@@ -1,0 +1,212 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WCFeRosja
+{
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "WyjazdyService" in code, svc and config file together.
+    // NOTE: In order to launch WCF Test Client for testing this service, please select WyjazdyService.svc or WyjazdyService.svc.cs at the Solution Explorer and start debugging.
+    public class WyjazdService : IWyjazdService
+    {
+        public async Task<bool> DodajWyjazd(Wyjazd daneWyjazdu)
+        {
+            int dodano;
+            WyjazdyEntity wyjazd = new WyjazdyEntity();
+            wyjazd = ((IWyjazdService)this).PrzetworzWyjazdDlaBazy(daneWyjazdu);
+
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                eRosja.wyjazdy.Add(wyjazd);
+
+
+                // Próba dodania rekordu do bazy i zwrócenie ilości dodanych rekordów (0 lub 1)
+                dodano = await eRosja.SaveChangesAsync();
+            }
+
+
+            if (dodano == 1)
+                return true;
+            else
+                return false;
+        }
+
+
+
+
+        public List<Wyjazd> PobierzWyjazdy(string loginUzytkownika)
+        {
+            List<Wyjazd> listaWyjazdow = new List<Wyjazd>();
+            List<WyjazdyEntity> listaWyjazdowEntity = new List<WyjazdyEntity>();
+
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                listaWyjazdowEntity = eRosja.wyjazdy.Where(w => w.uzytkownicy.login.Equals(loginUzytkownika)).ToList();
+            }
+
+            // Przekształca listę pobraną bezpośrednio z bazy na listę nazw (zamiast ID) dla klienta
+            listaWyjazdow = PrzetworzWyjazdyDlaKlienta(listaWyjazdowEntity);
+
+
+            return listaWyjazdow;
+        }
+
+
+
+
+        /* Przetwarza dane wyjazdu przesłane przez użytkownika w nazwach na ID, żeby móc zapisać do bazy
+           Konwersja:
+           NAZWY - ID */
+        public WyjazdyEntity PrzetworzWyjazdDlaBazy(Wyjazd daneWyjazdu)
+        {
+            int kanal = 0;
+            int mandat = 0;
+            bool papierosy = true;
+            bool alkohol = true;
+
+            if (daneWyjazdu.Kanal == true)
+                kanal = 1;
+            if (daneWyjazdu.Mandat == true)
+                mandat = 1;
+            if (daneWyjazdu.Papierosy == null)
+                papierosy = false;
+            if (daneWyjazdu.Alkohol == null)
+                alkohol = false;
+
+            WyjazdyEntity wyjazd = new WyjazdyEntity();
+
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                int IdPrzejscia = eRosja.przejscia.Where(p => p.nazwa.Equals(daneWyjazdu.Przejscie)).Select(p => p.id_przejscia).First();
+                int IdStacji = eRosja.stacje_benzynowe.Where(s => s.nazwa.Equals(daneWyjazdu.Paliwo.Stacja) &&
+                                                              s.id_przejscia == IdPrzejscia)
+                                                              .Select(s => s.id_stacje_benzynowe).First();
+
+                wyjazd.id_uzytkownicy = eRosja.uzytkownicy.Where(u => u.login.Equals(daneWyjazdu.LoginUzytkownika))
+                                                           .Select(u => u.id_uzytkownicy).First();
+
+                wyjazd.id_przejscia = IdPrzejscia;
+
+                wyjazd.id_stacje_benzynowe = IdStacji;
+
+                wyjazd.id_paliwa = eRosja.paliwo_ceny.Where(p => p.paliwa.nazwa.Equals(daneWyjazdu.Paliwo.RodzajPaliwa) &&
+                                                            p.id_stacje_benzynowe == IdStacji)
+                                                            .Select(p => p.id_paliwa).First();
+
+                wyjazd.ilosc_paliwa = daneWyjazdu.Paliwo.IloscPaliwa;
+
+
+                if (papierosy == true)
+                {
+                    wyjazd.id_sklepy_papierosy = eRosja.sklepy.Where(s => s.nazwa.Equals(daneWyjazdu.Papierosy.Sklep)
+                                                                 && s.id_przejscia == IdPrzejscia)
+                                                                 .Select(s => s.id_sklepy).First();
+
+                    wyjazd.id_papierosy = eRosja.papierosy_ceny.Where(p => p.papierosy.nazwa.Equals(daneWyjazdu.Papierosy.Nazwa) &&
+                                                                  p.id_przejscia == IdPrzejscia &&
+                                                                  p.id_sklepy == wyjazd.id_sklepy_papierosy)
+                                                                  .Select(p => p.id_papierosy).First();
+
+                    wyjazd.ilosc_papierosow = daneWyjazdu.Papierosy.Ilosc;
+                }
+
+
+                if (alkohol == true)
+                {
+                    wyjazd.id_sklepy_alkohole = eRosja.sklepy.Where(s => s.nazwa.Equals(daneWyjazdu.Alkohol.Sklep)
+                                                                 && s.id_przejscia == IdPrzejscia)
+                                                                 .Select(s => s.id_sklepy).First();
+
+                    wyjazd.id_alkohole = eRosja.alkohol_ceny.Where(p => p.alkohole.nazwa.Equals(daneWyjazdu.Alkohol.Nazwa) &&
+                                                                      p.id_przejscia == IdPrzejscia &&
+                                                                      p.id_sklepy == wyjazd.id_sklepy_alkohole)
+                                                                      .Select(p => p.id_alkohole).First();
+
+                    wyjazd.ilosc_alkoholu = daneWyjazdu.Alkohol.Ilosc;
+                }
+
+
+                wyjazd.data = daneWyjazdu.Data.Date;
+                wyjazd.godzina = daneWyjazdu.Godzina;
+                wyjazd.kanal = kanal;
+                wyjazd.mandat = mandat;
+
+
+                return wyjazd;
+            }
+        }
+
+
+
+
+        /* Przetwarza dane wyjazdu pobrane z bazy (ID) na NAZWY dla klienta
+           Konwersja:
+           ID - NAZWY */
+        public List<Wyjazd> PrzetworzWyjazdyDlaKlienta(List<WyjazdyEntity> listaWyjazdowEntity)
+        {
+            List<Wyjazd> listaWyjazdow = new List<Wyjazd>();
+
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                // Przejście przez każdy z wyjazdów
+                for (int i = 0; i < listaWyjazdowEntity.Count; i++)
+                {
+                    Wyjazd wyjazd = new Wyjazd();
+                    Paliwo paliwo = new Paliwo();
+                    Alkohol alkohol = new Alkohol();
+                    Papierosy papierosy = new Papierosy();
+                    wyjazd.Paliwo = paliwo;
+                    WyjazdyEntity wyjazdEntity = new WyjazdyEntity();
+
+                    wyjazdEntity = listaWyjazdowEntity[i];
+
+                    // Zamiana każdego z wyjazdów na wyjazd dla klienta
+                    // ID - NAZWY
+                    wyjazd.LoginUzytkownika = eRosja.uzytkownicy.Where(u => u.id_uzytkownicy == wyjazdEntity.id_uzytkownicy).Select(u => u.login).First();
+                    wyjazd.Przejscie = eRosja.przejscia.Where(p => p.id_przejscia == wyjazdEntity.id_przejscia).Select(p => p.nazwa).First();
+                    wyjazd.Paliwo.Stacja = eRosja.stacje_benzynowe.Where(s => s.id_stacje_benzynowe == wyjazdEntity.id_stacje_benzynowe).Select(s => s.nazwa).First();
+                    wyjazd.Paliwo.RodzajPaliwa = eRosja.paliwa.Where(p => p.id_paliwa == wyjazdEntity.id_paliwa).Select(p => p.nazwa).First();
+                    wyjazd.Paliwo.IloscPaliwa = wyjazdEntity.ilosc_paliwa;
+                    if (wyjazdEntity.id_sklepy_papierosy != null)
+                    {
+                        wyjazd.Papierosy = papierosy;
+                        wyjazd.Papierosy.Sklep = eRosja.sklepy.Where(s => s.id_sklepy == wyjazdEntity.id_sklepy_papierosy).Select(s => s.nazwa).First();
+                        wyjazd.Papierosy.Nazwa = eRosja.papierosy.Where(p => p.id_papierosy == wyjazdEntity.id_papierosy).Select(p => p.nazwa).First();
+                        wyjazd.Papierosy.Ilosc = (int)wyjazdEntity.ilosc_papierosow;
+                    }
+                    if (wyjazdEntity.id_sklepy_alkohole != null)
+                    {
+                        wyjazd.Alkohol = alkohol;
+                        wyjazd.Alkohol.Sklep = eRosja.sklepy.Where(s => s.id_sklepy == wyjazdEntity.id_sklepy_alkohole).Select(s => s.nazwa).First();
+                        wyjazd.Alkohol.Nazwa = eRosja.alkohole.Where(a => a.id_alkohole == wyjazdEntity.id_alkohole).Select(a => a.nazwa).First();
+                        wyjazd.Alkohol.Ilosc = (decimal)wyjazdEntity.ilosc_alkoholu;
+                    }
+                    wyjazd.Data = wyjazdEntity.data;
+                    wyjazd.Godzina = wyjazdEntity.godzina;
+                    if (wyjazdEntity.kanal == 1)
+                        wyjazd.Kanal = true;
+                    else
+                        wyjazd.Kanal = false;
+                    if (wyjazdEntity.mandat == 1)
+                        wyjazd.Mandat = true;
+                    else
+                        wyjazd.Mandat = false;
+                    
+                    // Dodanie przetworzonego wyjazdu dla klienta do listy
+                    listaWyjazdow.Add(wyjazd);
+                }
+            }
+
+            return listaWyjazdow;
+        }
+    }
+}
+
+

@@ -1,0 +1,369 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Text;
+
+
+namespace WCFeRosja
+{
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "CenyMiejscaService" in code, svc and config file together.
+    // NOTE: In order to launch WCF Test Client for testing this service, please select CenyMiejscaService.svc or CenyMiejscaService.svc.cs at the Solution Explorer and start debugging.
+    public class CenyMiejscaService : ICenyMiejscaService
+    {
+
+        public List<string> PobierzPrzejscia()
+        {
+            List<string> listaPrzejsc = new List<string>();
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                listaPrzejsc = eRosja.przejscia.Select(p => p.nazwa).ToList();
+            }
+
+            return listaPrzejsc;
+        }
+
+
+
+        public List<string> PobierzStacjeBenzynowe(string nazwaPrzejscia)
+        {
+            // Pobranie ID przejścia
+            long idPrzejscia = ((ICenyMiejscaService)this).PobierzIDPrzejscia(nazwaPrzejscia);
+            List<string> listaStacji = new List<string>();
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                listaStacji = eRosja.stacje_benzynowe.Where(s => s.id_przejscia == idPrzejscia).Select(s => s.nazwa).ToList();
+            }
+
+            return listaStacji;
+        }
+
+
+
+        public long PobierzIDPrzejscia(string nazwaPrzejscia)
+        {
+            long ID;
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                ID = eRosja.przejscia.First(p => p.nazwa.Equals(nazwaPrzejscia)).id_przejscia;
+            }
+
+            return ID;
+        }
+
+
+
+        public List<string> PobierzNazwyPaliw()
+        {
+            List<String> listaPaliw = new List<string>();
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                listaPaliw = eRosja.paliwa.Select(p => p.nazwa).ToList();
+            }
+
+            return listaPaliw;
+        }
+
+
+
+        public long PobierzIDStacji(string nazwaStacji, long IdPrzejscia)
+        {
+            long ID;
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                ID = eRosja.stacje_benzynowe.First(p => p.nazwa.Equals(nazwaStacji) && p.id_przejscia == IdPrzejscia).id_stacje_benzynowe;
+            }
+
+            return ID;
+        }
+
+
+
+        public Dictionary<int, decimal> PobierzCenyPaliw(string nazwaPrzejscia, string nazwaStacji)
+        {
+            // Pobranie cen paliw dla wybranej stacji benzynowej
+
+            long idPrzejscia = ((ICenyMiejscaService)this).PobierzIDPrzejscia(nazwaPrzejscia);
+            long idStacji = ((ICenyMiejscaService)this).PobierzIDStacji(nazwaStacji, idPrzejscia);
+
+            var cenyPaliw = new Dictionary<int, decimal>();
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                // klucz - Id_paliwa
+                // wartość - cena
+                cenyPaliw = eRosja.paliwo_ceny.Where(p => p.id_stacje_benzynowe == idStacji).ToDictionary(c => c.id_paliwa, c => c.cena);
+            }
+
+            return cenyPaliw;
+        }
+
+
+
+
+        public Dictionary<int, decimal> PobierzCenyPaliwWszystkie()
+        {
+            // Pobranie cen paliw dla wybranej stacji benzynowej
+            var cenyPaliw = new Dictionary<int, decimal>();
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                // klucz - Id_paliwa
+                // wartość - cena
+                cenyPaliw = eRosja.paliwo_ceny.ToDictionary(c => c.id_paliwo_ceny, c => c.cena);
+            }
+
+            return cenyPaliw;
+        }
+
+
+
+
+        public decimal PobierzCenePaliwa(string nazwaPrzejscia, string nazwaStacji, string rodzajPaliwa)
+        {
+            // Pobranie konkretnej ceny paliwa dla konkretnego rodzaju benzyny
+            decimal cena;
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                cena = eRosja.paliwo_ceny.Where(p => p.stacje_benzynowe.przejscia.nazwa.Equals(nazwaPrzejscia) &&
+                                                p.stacje_benzynowe.nazwa.Equals(nazwaStacji) &&
+                                                p.paliwa.nazwa.Equals(rodzajPaliwa)).Select(p => p.cena).First();
+            }
+
+            return cena;
+        }
+
+
+
+
+        public List<string> PobierzSklepy(string nazwaPrzejscia)
+        {
+            List<string> listaSklepow = new List<string>();
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                listaSklepow = eRosja.sklepy.Where(s => s.przejscia.nazwa.Equals(nazwaPrzejscia)).Select(s => s.nazwa).ToList();
+            }
+
+            return listaSklepow;
+        }
+
+
+
+
+        public Dictionary<DateTime, decimal> PobierzKursRubla()
+        {
+            Dictionary<DateTime, decimal> kurs = new Dictionary<DateTime, decimal>();
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                kurs = eRosja.kursy.Where(k => k.waluty.nazwa.Equals("RUB")).ToDictionary(k => k.data, k => k.kurs);
+            }
+
+            return kurs;
+        }
+
+
+
+        public decimal PobierzKursEuro()
+        {
+            decimal kurs;
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                kurs = eRosja.kursy.Where(k => k.waluty.nazwa.Equals("EUR")).Select(k => k.kurs).First();
+            }
+
+            return kurs;
+        }
+
+
+
+        public long PobierzIDSklepu(string nazwaSklepu)
+        {
+            long ID;
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                ID = eRosja.sklepy.Where(s => s.nazwa.Equals(nazwaSklepu)).Select(s => s.id_sklepy).First();
+            }
+
+            return ID;
+        }
+
+
+
+        public List<string> PobierzDostepnePaliwa(string nazwaPrzejscia, string nazwaStacji)
+        {
+            List<string> dostepnePaliwa = new List<string>();
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                //dostepnePaliwa = eRosja.paliwa.Where(eRosja.stacje_benzynowe.Where(s => s.nazwa.Equals(nazwaStacji))).Select(p => p.nazwa).ToList();
+                dostepnePaliwa = eRosja.paliwo_ceny.Where(p => p.stacje_benzynowe.przejscia.nazwa.Equals(nazwaPrzejscia) && p.stacje_benzynowe.nazwa.Equals(nazwaStacji)).Select(p => p.paliwa.nazwa).ToList();
+            }
+
+            return dostepnePaliwa;
+        }
+
+
+
+
+        public List<PapierosyCeny> PobierzPapierosy(string nazwaPrzejscia, string nazwaSklepu)
+        {
+            List<PapierosyCeny> listaPapierosow = new List<PapierosyCeny>();
+            List<Papierosy_cenyEntity> listaPapierosowEntity = new List<Papierosy_cenyEntity>();
+
+            long idPrzejscia = ((ICenyMiejscaService)this).PobierzIDPrzejscia(nazwaPrzejscia);
+            long idSklepu = ((ICenyMiejscaService)this).PobierzIDSklepu(nazwaSklepu);
+
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                listaPapierosowEntity = eRosja.papierosy_ceny.Where(p => p.id_przejscia == idPrzejscia && p.id_sklepy == idSklepu).ToList();
+            }
+
+            // Przekształca listę pobraną bezpośrednio z bazy na listę nazw (zamiast ID) dla klienta
+            listaPapierosow = PrzetworzListePapierosowDlaKlienta(listaPapierosowEntity);
+
+
+            return listaPapierosow;
+        }
+
+
+        public Dictionary<int, decimal> PobierzCenyPapierosowWszystkiePakiet()
+        {
+            // Pobranie cen paliw dla wybranej stacji benzynowej
+            var cenyPapierosow = new Dictionary<int, decimal>();
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                // klucz - Id_paliwa
+                // wartość - cena
+                cenyPapierosow = eRosja.papierosy_ceny.ToDictionary(p => p.id_papierosy_ceny, p => (decimal)p.cena_pakiet);
+            }
+
+            return cenyPapierosow;
+        }
+
+
+        public Dictionary<int, decimal> PobierzCenyPapierosowWszystkiePaczka()
+        {
+            // Pobranie cen paliw dla wybranej stacji benzynowej
+            var cenyPapierosow = new Dictionary<int, decimal>();
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                // klucz - Id_paliwa
+                // wartość - cena
+                cenyPapierosow = eRosja.papierosy_ceny.ToDictionary(p => p.id_papierosy_ceny, p => (decimal)p.cena_paczka);
+            }
+
+            return cenyPapierosow;
+        }
+
+
+
+
+
+        public List<Alkohol> PobierzAlkohole(string nazwaPrzejscia, string nazwaSklepu)
+        {
+            List<Alkohol> listaAlkoholi = new List<Alkohol>();
+            List<Alkohole_cenyEntity> listaAlkoholiEntity = new List<Alkohole_cenyEntity>();
+
+            long idPrzejscia = ((ICenyMiejscaService)this).PobierzIDPrzejscia(nazwaPrzejscia);
+            long idSklepu = ((ICenyMiejscaService)this).PobierzIDSklepu(nazwaSklepu);
+
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                listaAlkoholiEntity = eRosja.alkohol_ceny.Where(a => a.przejscia.nazwa.Equals(nazwaPrzejscia) && a.sklepy.nazwa.Equals(nazwaSklepu)).ToList();
+            }
+
+
+            // Przekształca listę pobraną bezpośrednio z bazy na listę nazw (zamiast ID) dla klienta
+            listaAlkoholi = PrzetworzListeAlkoholiDlaKlienta(listaAlkoholiEntity);
+
+
+            return listaAlkoholi;
+        }
+
+
+
+
+
+        public List<PapierosyCeny> PrzetworzListePapierosowDlaKlienta(List<Papierosy_cenyEntity> listaPapierosowEntity)
+        {
+            List<PapierosyCeny> listaPapierosow = new List<PapierosyCeny>();
+
+            using(eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                // Przejście przez każdy z wyjazdów
+                for (int i = 0; i < listaPapierosowEntity.Count; i++)
+                {
+                    PapierosyCeny papierosy = new PapierosyCeny();
+                    Papierosy_cenyEntity papierosyEntity = new Papierosy_cenyEntity();
+
+                    papierosyEntity = listaPapierosowEntity[i];
+
+
+                    // Zamiana każdego z papierosów na papierosy dla klienta
+                    // ID - NAZWY
+                    papierosy.Przejscie = eRosja.przejscia.Where(p => p.id_przejscia == papierosyEntity.id_przejscia).Select(p => p.nazwa).First();
+                    papierosy.Sklep = eRosja.sklepy.Where(s => s.id_sklepy == papierosyEntity.id_sklepy).Select(s => s.nazwa).First();
+                    papierosy.Nazwa = eRosja.papierosy.Where(p => p.id_papierosy == papierosyEntity.id_papierosy).Select(p => p.nazwa).First();
+                    papierosy.CenaPaczka = eRosja.papierosy_ceny.Where(p => p.id_papierosy_ceny == papierosyEntity.id_papierosy_ceny).Select(p => p.cena_paczka).First();
+                    papierosy.CenaPakiet = eRosja.papierosy_ceny.Where(p => p.id_papierosy_ceny == papierosyEntity.id_papierosy_ceny).Select(p => p.cena_pakiet).First();
+
+                    listaPapierosow.Add(papierosy);
+                }
+            }
+
+            return listaPapierosow;
+        }
+
+
+
+
+
+        public List<Alkohol> PrzetworzListeAlkoholiDlaKlienta(List<Alkohole_cenyEntity> listaAlkoholiEntity)
+        {
+            List<Alkohol> listaAlkoholi = new List<Alkohol>();
+
+            using (eRosjaEntities eRosja = new eRosjaEntities())
+            {
+                // Przejście przez każdy z wyjazdów
+                for (int i = 0; i < listaAlkoholiEntity.Count; i++)
+                {
+                    Alkohol alkohol = new Alkohol();
+                    Alkohole_cenyEntity alkoholEntity = new Alkohole_cenyEntity();
+
+                    alkoholEntity = listaAlkoholiEntity[i];
+
+
+                    // Zamiana każdego z alkoholi na alkohole dla klienta
+                    // ID - NAZWY
+                    alkohol.Przejscie = eRosja.przejscia.Where(p => p.id_przejscia == alkoholEntity.id_przejscia).Select(p => p.nazwa).First();
+                    alkohol.Sklep = eRosja.sklepy.Where(s => s.id_sklepy == alkoholEntity.id_sklepy).Select(s => s.nazwa).First();
+                    alkohol.Nazwa = eRosja.alkohole.Where(a => a.id_alkohole == alkoholEntity.id_alkohole).Select(a => a.nazwa).First();
+                    alkohol.Cena = eRosja.alkohol_ceny.Where(a => a.id_alkohol_ceny == alkoholEntity.id_alkohol_ceny).Select(a => a.cena).First();
+                    
+
+                    listaAlkoholi.Add(alkohol);
+                }
+            }
+
+            return listaAlkoholi;
+
+        }
+    }
+
+
+}

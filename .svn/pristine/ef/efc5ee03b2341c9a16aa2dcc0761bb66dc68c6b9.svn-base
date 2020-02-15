@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFeRosja" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFeRosja" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfPapierosyCeny">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PapierosyCeny" nillable="true" type="tns:PapierosyCeny" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPapierosyCeny" nillable="true" type="tns:ArrayOfPapierosyCeny" />
+  <xs:complexType name="PapierosyCeny">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CenaPaczka" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CenaPakiet" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Nazwa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Przejscie" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sklep" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PapierosyCeny" nillable="true" type="tns:PapierosyCeny" />
+  <xs:complexType name="ArrayOfAlkohol">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Alkohol" nillable="true" type="tns:Alkohol" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAlkohol" nillable="true" type="tns:ArrayOfAlkohol" />
+  <xs:complexType name="Alkohol">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cena" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Ilosc" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Nazwa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Przejscie" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sklep" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Alkohol" nillable="true" type="tns:Alkohol" />
+</xs:schema>

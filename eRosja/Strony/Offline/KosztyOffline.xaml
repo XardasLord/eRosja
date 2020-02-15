@@ -1,0 +1,283 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="eRosja.Strony.Offline.KosztyOffline"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Margin="0,-20,0,0">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.9">
+                <GradientStop Color="White"/>
+                <GradientStop Color="Red" Offset="1"/>
+                <GradientStop Color="Blue" Offset="0.5"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="E-ROSJA" Style="{StaticResource PhoneTextNormalStyle}" Foreground="Black"/>
+            <TextBlock Text="Offline" Margin="140,-27,0,0" Foreground="Red"/>
+            <TextBlock Text="Oblicz koszt" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="Black"/>
+        </StackPanel>
+
+
+        <!--================================================================================================-->
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+
+            <ProgressBar 
+                        x:Name="pbLadowanie" 
+                        HorizontalAlignment="Left" 
+                        Height="15" 
+                        Margin="44,-31,0,0" 
+                        VerticalAlignment="Top" 
+                        Width="363" 
+                        IsIndeterminate="True"/>
+
+
+            <!--================================================================================================-->
+
+
+            <!--GRID przejścia graniczne-->
+            <Grid Margin="0,-11,0,500" RenderTransformOrigin="0.5,0.5">
+
+                <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Przejście graniczne:" VerticalAlignment="Top"/>
+
+
+                <!--List Picker z nazwami przejść granicznych-->
+                <toolkit:ListPicker x:Name="lpPrzejscia"
+                    	HorizontalAlignment="Left" 
+                    	Margin="187,0,0,0" 
+                    	VerticalAlignment="Top" 
+                    	Width="259" 
+                    	ExpansionMode="FullScreenOnly"
+                    	FullModeHeader="Wybierz przejście graniczne" 
+                        SelectionChanged="lpPrzejscia_SelectionChanged">
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="40" Margin="10"/>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+            </Grid>
+
+
+
+            <!--================================================================================================-->
+
+
+
+            <Grid x:Name="gridPaliwo" Margin="0,50,0,318">
+
+                <TextBlock HorizontalAlignment="Left" Margin="20,33,0,0" TextWrapping="Wrap" Text="Stacja benzynowa:" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="120,93,0,0" TextWrapping="Wrap" Text="Paliwo:" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="82,145,0,0" TextWrapping="Wrap" Text="Ilość litrów:" VerticalAlignment="Top"/>
+
+                <!--List Picker z nazwami stacji benzynowych-->
+                <toolkit:ListPicker x:Name="lpStacje"
+            	    HorizontalAlignment="Left" 
+            	    Margin="187,0,0,0" 
+            	    VerticalAlignment="Top" 
+            	    Width="259" 
+            	    ExpansionMode="FullScreenOnly"
+            	    FullModeHeader="Wybierz stację benzynową" 
+                    SelectionChanged="lpStacje_SelectionChanged">
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="40" Margin="10"/>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+
+
+                <!--List Picker z nazwami paliw-->
+                <toolkit:ListPicker x:Name="lpPaliwa"
+            	    HorizontalAlignment="Left" 
+            	    Margin="187,60,0,0" 
+            	    VerticalAlignment="Top" 
+            	    Width="259" 
+            	    ExpansionMode="FullScreenOnly"
+            	    FullModeHeader="Wybierz rodzaj paliwa" SelectionChanged="lpPaliwa_SelectionChanged">
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="40" Margin="10"/>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+
+
+                <!--TextBox do wpisania ilości litrów paliwa-->
+                <TextBox x:Name="tbIloscPaliwa" Height="66" Margin="176,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="119" InputScope="Number" TextChanged="tbIloscPaliwa_TextChanged"/>
+            </Grid>
+
+
+            <!--GRID wybór czy papierosy i czy alkohol-->
+            <Grid Margin="0,235,0,253">
+                <CheckBox x:Name="cbPapierosy" Content="Papierosy" HorizontalAlignment="Left" Margin="10,-10,0,0" VerticalAlignment="Top" FlowDirection="LeftToRight" VerticalContentAlignment="Top" Checked="cbPapierosy_Checked" Unchecked="cbPapierosy_Unchecked" IsChecked="True"/>
+                <CheckBox x:Name="cbAlkohol" Content="Alkohol" HorizontalAlignment="Left" Margin="234,-10,0,0" VerticalAlignment="Top" Checked="cbAlkohol_Checked" Unchecked="cbAlkohol_Unchecked"/>
+            </Grid>
+
+
+            <!--================================================================================================-->
+
+
+            <!--GRID papieorsy-->
+            <Grid x:Name="gridPapierosy" Margin="0,284,228,162">
+
+                <!--List Picker z nazwami sklepów-->
+                <toolkit:ListPicker x:Name="lpSklepyPapierosy"
+                    	HorizontalAlignment="Left" 
+                    	Margin="79,0,0,0" 
+                    	VerticalAlignment="Top" 
+                    	Width="135" 
+                    	ExpansionMode="FullScreenOnly"
+                    	FullModeHeader="Wybierz sklep - papierosy" 
+                        SelectionChanged="lpSklepyPapierosy_SelectionChanged">
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="40" Margin="10"/>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+
+
+                <!--List Picker z nazwami papierosów-->
+                <toolkit:ListPicker x:Name="lpPapierosy"
+                	HorizontalAlignment="Left" 
+                	Margin="79,58,0,0" 
+                	VerticalAlignment="Top" 
+                	Width="135"
+                    FontSize="20"
+                	ExpansionMode="FullScreenOnly"
+                	FullModeHeader="Wybierz papierosy" SelectionChanged="lpPapierosy_SelectionChanged">
+                    <toolkit:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Nazwa}" FontSize="20"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:ListPicker.ItemTemplate>
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Nazwa}" FontSize="26" Margin="10"/>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+
+
+                <TextBox x:Name="tbIloscPapierosow" HorizontalAlignment="Left" Height="67" Margin="68,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" InputScope="Number" TextChanged="tbIloscPapierosow_TextChanged"/>
+
+                <TextBlock HorizontalAlignment="Left" Margin="21,33,0,0" TextWrapping="Wrap" Text="Sklep:" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" Text="Nazwa:" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="20,141,0,0" TextWrapping="Wrap" Text="Sztuk:" VerticalAlignment="Top"/>
+
+            </Grid>
+
+
+            <!--================================================================================================-->
+
+
+            <!--GRID alkohol-->
+            <Grid x:Name="gridAlkohol" Margin="228,284,0,162" Visibility="Collapsed">
+                <!--List Picker z nazwami sklepów-->
+                <toolkit:ListPicker x:Name="lpSklepyAlkohol"
+                    	HorizontalAlignment="Left" 
+                    	Margin="79,0,0,0" 
+                    	VerticalAlignment="Top" 
+                    	Width="135" 
+                    	ExpansionMode="FullScreenOnly"
+                    	FullModeHeader="Wybierz sklep - alkohol" 
+                        SelectionChanged="lpSklepyAlkohol_SelectionChanged">
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="40" Margin="10"/>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+
+
+                <!--List Picker z nazwami alkoholi-->
+                <toolkit:ListPicker x:Name="lpAlkohole"
+                	HorizontalAlignment="Left" 
+                	Margin="79,58,0,0" 
+                	VerticalAlignment="Top" 
+                	Width="135"
+                    FontSize="20"
+                	ExpansionMode="FullScreenOnly"
+                	FullModeHeader="Wybierz alkohol" SelectionChanged="lpAlkohole_SelectionChanged">
+                    <toolkit:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Nazwa}" FontSize="20"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:ListPicker.ItemTemplate>
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Nazwa}" FontSize="30" Margin="10"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+
+
+                <TextBox x:Name="tbIloscAlkoholu" HorizontalAlignment="Left" Height="67" Margin="68,116,0,-2" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" InputScope="Number" TextChanged="tbIloscAlkoholu_TextChanged"/>
+
+                <TextBlock HorizontalAlignment="Left" Margin="21,33,0,0" TextWrapping="Wrap" Text="Sklep:" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" Text="Nazwa:" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="15,141,0,0" TextWrapping="Wrap" Text="Litrów:" VerticalAlignment="Top"/>
+            </Grid>
+
+
+            <!--================================================================================================-->
+
+
+            <!--GRID z kosztami-->
+            <Grid Margin="0,491,0,38">
+                <TextBlock HorizontalAlignment="Left" Margin="28,10,0,0" TextWrapping="Wrap" Text="Paliwo:" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="0,37,0,0" TextWrapping="Wrap" Text="Papierosy:" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="18,64,0,-22" TextWrapping="Wrap" Text="Alkohol:" VerticalAlignment="Top"/>
+
+                <TextBlock x:Name="tbCenaPaliwa" HorizontalAlignment="Left" Margin="94,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontWeight="Bold"/>
+                <TextBlock x:Name="tbCenaPapierosow" HorizontalAlignment="Left" Margin="94,37,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontWeight="Bold"/>
+                <TextBlock x:Name="tbCenaAlkoholu" HorizontalAlignment="Left" Margin="94,64,0,-22" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontWeight="Bold"/>
+
+                <Grid Margin="296,10,0,10" Background="#FF2E4227">
+                    <TextBlock x:Name="tbKosztCalkowity" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="40" Width="171" Foreground="White" Margin="5,10,0,0"/>
+                </Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="204,15,0,30" TextWrapping="Wrap" Text="Koszt całkowity:" Width="87"/>
+
+
+            </Grid>
+
+
+
+            <!--================================================================================================-->
+
+
+        </Grid>
+
+
+
+    </Grid>
+
+</phone:PhoneApplicationPage>

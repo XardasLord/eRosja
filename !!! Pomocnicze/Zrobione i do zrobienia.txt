@@ -1,0 +1,11 @@
+ZROBIONE:
+- stworzyæ us³ugê WCF - CenyMiejscaServices:
+   * pobieranie przejœæ granicznych
+   * pobieranie stacji benzynowych
+   * pobieranie cen paliwa
+- dodanie do tabel "uaktualnienia_..." klucza obcego "id_przejscia"
+- Zrobienie strony z kursami
+
+DO ZROBIENIA:
+- Zrobiæ klasê przechowuj¹c¹ jeden wyjazd
+

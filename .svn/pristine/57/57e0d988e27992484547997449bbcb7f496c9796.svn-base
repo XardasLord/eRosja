@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.1.15/WCFeRosja/WyjazdService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCFeRosja" />
+  <xs:element name="DodajWyjazd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCFeRosja" minOccurs="0" name="daneWyjazdu" nillable="true" type="q1:Wyjazd" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DodajWyjazdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DodajWyjazdResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzWyjazdy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="loginUzytkownika" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PobierzWyjazdyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCFeRosja" minOccurs="0" name="PobierzWyjazdyResult" nillable="true" type="q2:ArrayOfWyjazd" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

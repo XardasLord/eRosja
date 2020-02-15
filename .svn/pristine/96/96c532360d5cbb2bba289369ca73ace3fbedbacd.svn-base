@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace eRosja
+{
+    public class Waluty
+    {
+        public Waluty()
+        {
+            this.kursy = new HashSet<kursy>();
+        }
+
+        [SQLite.PrimaryKey, SQLite.AutoIncrement]
+        public int id_waluty { get; set; }
+        public string nazwa { get; set; }
+
+        public virtual ICollection<kursy> kursy { get; set; }
+    }
+}
